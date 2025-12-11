@@ -10,6 +10,10 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
+Route::get('/sisemar', [HomeController::class, 'sisemar'])->name('sisemar');
+Route::get('/ampera', [HomeController::class, 'ampera'])->name('ampera');
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

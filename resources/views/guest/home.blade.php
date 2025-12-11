@@ -13,7 +13,7 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.6)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.6)), url('{{ asset("images/bumper.JPG") }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
