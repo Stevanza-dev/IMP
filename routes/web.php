@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\AttendanceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +39,14 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Halaman Rekap Absensi
     Route::get('/admin/absensi', [AdminController::class, 'attendance'])->name('admin.attendance');
+
+    // Manajemen Rapat (Admin)
+    Route::get('/rapat/buat', [MeetingController::class, 'create'])->name('meetings.create');
+    Route::post('/rapat/simpan', [MeetingController::class, 'store'])->name('meetings.store');
+    Route::get('/rapat/{id}/qr', [MeetingController::class, 'show'])->name('meetings.show');
+
+    // Rekap Absensi Rapat
+    Route::get('/rapat/{id}/rekap', [MeetingController::class, 'recap'])->name('meetings.recap');
 });
 
 // Route Cek Tiket Publik
@@ -45,5 +55,9 @@ Route::get('/cek-tiket', [TicketController::class, 'index'])->name('ticket.check
 // Route untuk menampilkan form
 Route::get('/daftar-ampera', [RegistrationController::class, 'create'])->name('registration.create');
 Route::post('/daftar-ampera', [RegistrationController::class, 'store'])->name('registration.store'); //kirim data
+
+// Route Absensi Peserta (Via QR Code)
+Route::get('/absen-rapat/{token}', [AttendanceController::class, 'show'])->name('attendance.form');
+Route::post('/absen-rapat/{token}', [AttendanceController::class, 'store'])->name('attendance.store');
 
 require __DIR__.'/auth.php';

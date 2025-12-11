@@ -78,7 +78,7 @@ class AdminController extends Controller
         $code = $request->code;
 
         // 1. Cari Tiket berdasarkan Kode
-        $ticket = \App\Models\Registration::where('ticket_code', $code)->first();
+        $ticket = Registration::where('ticket_code', $code)->first();
 
         // Kasus A: Tiket tidak ditemukan
         if (!$ticket) {
