@@ -39,10 +39,6 @@ class RegistrationController extends Controller
             // Gunakan disk cloudinary
             $filePath = $request->file('payment_proof')->store('uploads', 'cloudinary');
 
-            // URL gambar yang bisa diakses publik
-            $url = $filePath; // Cloudinary biasanya langsung mengembalikan URL atau ID
-            // Jika butuh URL lengkap:
-            $url = cloudinary()->getUrl($filePath);
             $validated['payment_proof'] = $filePath;
         }
 
