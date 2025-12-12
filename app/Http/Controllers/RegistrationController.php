@@ -34,9 +34,15 @@ class RegistrationController extends Controller
         ]);
 
         // 2. Handle Upload Gambar
-        // Gambar akan disimpan di folder: storage/app/public/payments
+        // Gambar akan disimpan di folder: cloudinary/uploads
         if ($request->hasFile('payment_proof')) {
-            $filePath = $request->file('payment_proof')->store('payments', 'public');
+            // Gunakan disk cloudinary
+            $filePath = $request->file('payment_proof')->store('uploads', 'cloudinary');
+
+            // URL gambar yang bisa diakses publik
+            $url = $filePath; // Cloudinary biasanya langsung mengembalikan URL atau ID
+            // Jika butuh URL lengkap:
+            $url = cloudinary()->getUrl($filePath);
             $validated['payment_proof'] = $filePath;
         }
 
