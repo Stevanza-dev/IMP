@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMPERA 2026 - IMP</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         /* Background Khusus AMPERA (Nuansa Hutan/Alam) */
         .ampera-hero {
             background-image: linear-gradient(rgba(6, 78, 59, 0.85), rgba(6, 78, 59, 0.7)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
@@ -20,44 +25,55 @@
         }
     </style>
 </head>
+
 <body class="bg-emerald-50 text-gray-800 font-sans">
 
     @include('partials.header')
 
     <section class="ampera-hero h-screen flex items-center justify-center text-center px-4 relative mt-16 md:mt-0">
         <div class="max-w-4xl mx-auto text-white z-10 animate-fade-in-up">
-            
+
             <div class="mb-6 flex justify-center">
-                 <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50">
+                <div
+                    class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50">
                     <i class="fas fa-tree text-3xl text-white"></i>
-                 </div>
+                </div>
             </div>
 
-            <p class="text-emerald-200 font-bold tracking-[0.2em] uppercase mb-4">IMP UNNES PRESENT</p>
-            
+            <p class="text-emerald-200 font-bold tracking-[0.2em] uppercase mb-4">NGREMBAKA BUMI WUKIRSARI</p>
+
             <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
                 AMPERA 2026
             </h1>
-            
+
             <h2 class="text-xl md:text-2xl font-medium text-emerald-100 mb-8 italic">
-                "Menanam Harapan, Mengabdi untuk Masa Depan"
+                "One Tree: Menumbuhkan Harapan untuk Generasi Masa Depan"
             </h2>
-            
+
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="{{ route('registration.create') }}" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-emerald-900/50 border border-emerald-400">
+                <a href="{{ route('registration.create') }}"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-emerald-900/50 border border-emerald-400">
                     Daftar Sekarang
                 </a>
-                
-                <a href="https://instagram.com/ampera_imp" target="_blank" class="bg-white text-emerald-900 font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition flex items-center justify-center gap-2">
+
+                <a href="https://instagram.com/ampera_imp" target="_blank"
+                    class="bg-white text-emerald-900 font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition flex items-center justify-center gap-2">
                     <i class="fab fa-instagram text-xl"></i> Instagram Official
+                </a>
+                <a href="{{ route('ticket.check') }}"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-blue-900/50 border border-blue-400">
+                    Cek Tiket
                 </a>
             </div>
         </div>
-        
+
         <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none transform rotate-180">
-            <svg class="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
-                    class="fill-emerald-50"></path> </svg>
+            <svg class="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="fill-emerald-50"></path>
+            </svg>
         </div>
     </section>
 
@@ -93,53 +109,71 @@
 
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
+
             <div class="flex justify-center order-1 md:order-1">
                 <div class="relative group">
-                    <div class="absolute inset-0 bg-emerald-200 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
-                    <img src="{{ asset('images/ampera.png') }}" alt="Logo AMPERA 2026" class="relative z-10 w-80 md:w-96 drop-shadow-2xl hover:scale-105 transition duration-500">
+                    <div
+                        class="absolute inset-0 bg-emerald-200 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition duration-500">
+                    </div>
+                    <img src="{{ asset('images/ampera.png') }}" alt="Logo AMPERA 2026"
+                        class="relative z-10 w-80 md:w-96 drop-shadow-2xl hover:scale-105 transition duration-500">
                 </div>
             </div>
 
             <div class="order-2 md:order-2">
-                <div class="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                <div
+                    class="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
                     Identitas Visual
                 </div>
-                <h2 class="text-4xl font-bold text-gray-900 mb-6">Filosofi Logo <br><span class="text-emerald-600">AMPERA 2026</span></h2>
-                
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Filosofi Logo <br><span
+                        class="text-emerald-600">AMPERA 2026</span></h2>
+
                 <div class="space-y-6">
                     <div class="flex">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                                <i class="fas fa-leaf"></i>
+                            <div
+                                class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-user-friends"></i>
                             </div>
                         </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-bold text-gray-800">Daun Tumbuh</h4>
-                            <p class="text-gray-600 text-sm">Melambangkan harapan baru dan kontribusi nyata mahasiswa terhadap kelestarian lingkungan Pati.</p>
+                            <h4 class="text-lg font-bold text-gray-800">Dua Figur Manusia Melengkung</h4>
+                            <p class="text-gray-600 text-sm">Dua figur manusia melambangkan kebersamaan dan gotong
+                                royong warga Pati. Bentuk melengkung kedua figur menegaskan sinergi serta harmoni dalam
+                                kerja sama, menonjolkan nilai kebersamaan yang menjadi ciri masyarakat Pati. Hal ini
+                                mencerminkan semangat inklusif pengabdian masyarakat.</p>
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                                <i class="fas fa-hands-helping"></i>
+                            <div
+                                class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-crown"></i>
                             </div>
                         </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-bold text-gray-800">Tangan Terbuka</h4>
-                            <p class="text-gray-600 text-sm">Simbol pengabdian tulus dan gotong royong melayani masyarakat desa.</p>
+                            <h4 class="text-lg font-bold text-gray-800">Mahkota di atas Kepala Merak</h4>
+                            <p class="text-gray-600 text-sm">Mahkota melambangkan niat yang murni (tanpa pamrih pribadi)
+                                dari pelajar dalam melakukan konservasi dan pengabdian. Mereka tidak mencari keuntungan,
+                                melainkan berjuang demi kelestarian abadi (sempurna) lingkungan Pati dan kesejahteraan
+                                berkelanjutan (bemilai tertinggi) masyarakat setempat.</p>
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-                                <i class="fas fa-water"></i> </div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-feather-alt"></i>
+                            </div>
                         </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-bold text-gray-800">Warna Hijau & Emas</h4>
-                            <p class="text-gray-600 text-sm">Hijau untuk kesejukan alam, Emas untuk kejayaan dan kualitas mahasiswa IMP.</p>
+                            <h4 class="text-lg font-bold text-gray-800">Kepala Burung Merak</h4>
+                            <p class="text-gray-600 text-sm">Kepala merak yang tegak dan memandang ke depan melambangkan
+                                visi yang luas dan pandangan jauh ke depan yang dimiliki oleh siswa. Dalam konteks
+                                konservasi Pati, ini berarti mereka tidak hanya fokus pada masalah saat ini, tetapi juga
+                                memiliki wawasan strategi untuk melestarikan lingkungan dan budaya di Pati.</p>
                         </div>
                     </div>
                 </div>
@@ -150,44 +184,52 @@
 
     <section class="py-20 bg-emerald-900 text-white relative overflow-hidden">
         <i class="fas fa-tree absolute -bottom-10 -left-10 text-[20rem] text-emerald-800 opacity-20"></i>
-        
+
         <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">Misi Utama AMPERA 2026</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
+                <div
+                    class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                    <div
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
                         <i class="fas fa-seedling"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Reboisasi 1000 Pohon</h3>
+                    <h3 class="text-xl font-bold mb-3">Reboisasi Pohon</h3>
                     <p class="text-emerald-200 text-sm leading-relaxed">
-                        Menanam bibit pohon produktif dan perindang di kawasan kritis Kabupaten Pati untuk mencegah banjir dan erosi.
+                        Menanam bibit pohon produktif dan perindang di kawasan kritis Kabupaten Pati untuk mencegah
+                        banjir dan erosi.
                     </p>
                 </div>
 
-                <div class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
+                <div
+                    class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                    <div
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
                         <i class="fas fa-people-carry"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Bakti Sosial Desa</h3>
+                    <h3 class="text-xl font-bold mb-3">Pengabdian Masyarakat</h3>
                     <p class="text-emerald-200 text-sm leading-relaxed">
-                        Menyalurkan bantuan sembako dan renovasi fasilitas umum untuk masyarakat desa binaan IMP.
+                        Menggalakkan masyarakat untuk saling membantu dan saling menghormati dalam setiap kegiatan.
                     </p>
                 </div>
 
-                <div class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
+                <div
+                    class="bg-emerald-800/50 backdrop-blur-sm p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                    <div
+                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl mx-auto mb-6">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Edukasi Lingkungan</h3>
+                    <h3 class="text-xl font-bold mb-3">Sosialisasi Incinerator</h3>
                     <p class="text-emerald-200 text-sm leading-relaxed">
-                        Memberikan sosialisasi pengolahan sampah dan pentingnya menjaga ekosistem kepada anak-anak sekolah dasar.
+                        Memberikan sosialisasi tentang incinerator dan pentingnya menjaga lingkungan dari sampah.
                     </p>
                 </div>
             </div>
-            
+
             <div class="mt-12">
-                <a href="{{ route('registration.create') }}" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-full transition shadow-lg">
+                <a href="{{ route('registration.create') }}"
+                    class="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-full transition shadow-lg">
                     Jadilah Relawan Sekarang
                 </a>
             </div>
@@ -202,7 +244,7 @@
         // Format harus YYYY-MM-DD HH:MM:SS
         const targetDate = new Date("{{ $amperaData->execution_date }} 08:00:00").getTime();
 
-        const timer = setInterval(function() {
+        const timer = setInterval(function () {
             const now = new Date().getTime();
             const distance = targetDate - now;
 
@@ -231,4 +273,5 @@
     </script>
 
 </body>
+
 </html>
