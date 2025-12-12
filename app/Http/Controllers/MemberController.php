@@ -20,16 +20,16 @@ class MemberController extends Controller
     {
         // DAFTAR DIVISI KHUSUS PANITIA AMPERA
         $divisions = [
+            'Penanggung Jawab',
             'Steering Committee (SC)',
-            'Organizing Committee (OC) / Inti',
+            'Sekretaris',
+            'Bendahara',
             'Sie Acara',
-            'Sie Humas & Publikasi',
-            'Sie Perlengkapan (Perkap)',
+            'Sie Humas',
             'Sie Konsumsi',
-            'Sie Dekdok (Dekorasi & Dokumentasi)',
-            'Sie Sponsorship & Danus',
-            'Sie Keamanan & Perizinan',
-            'Sie Kesehatan (P3K)',
+            'Sie PDD',
+            'Sie Sponsor',
+            'Sie Perkap',
         ];
 
         return view('members.form', compact('divisions'));
@@ -51,16 +51,16 @@ class MemberController extends Controller
     {
         // Gunakan daftar yang sama untuk Edit
         $divisions = [
+            'Penanggung Jawab',
             'Steering Committee (SC)',
-            'Organizing Committee (OC) / Inti',
+            'Sekretaris',
+            'Bendahara',
             'Sie Acara',
-            'Sie Humas & Publikasi',
-            'Sie Perlengkapan (Perkap)',
+            'Sie Humas',
             'Sie Konsumsi',
-            'Sie Dekdok (Dekorasi & Dokumentasi)',
-            'Sie Sponsorship & Danus',
-            'Sie Keamanan & Perizinan',
-            'Sie Kesehatan (P3K)',
+            'Sie PDD',
+            'Sie Sponsor',
+            'Sie Perkap',
         ];
 
         return view('members.form', compact('member', 'divisions'));
