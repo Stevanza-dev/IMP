@@ -87,4 +87,28 @@ class MeetingController extends Controller
             'totalMembers', 'totalPresent', 'totalAbsent', 'attendanceRate'
         ));
     }
+
+    /**
+     * Halaman Utama Manajemen Rapat (List Semua Rapat)
+     */
+    public function index()
+    {
+        // Ambil data rapat, urutkan dari yang terbaru
+        $meetings = Meeting::latest()->paginate(10);
+        
+        return view('admin.meetings.index', compact('meetings'));
+    }
+
+    /**
+     * Hapus Rapat
+     */
+    public function destroy($id)
+    {
+        $meeting = Meeting::findOrFail($id);
+        
+        // Hapus data rapat (Otomatis data absensi ikut terhapus karena 'cascade' di migration)
+        $meeting->delete();
+
+        return redirect()->route('meetings.index')->with('success', 'Data rapat berhasil dihapus.');
+    }
 }

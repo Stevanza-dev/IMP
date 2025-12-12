@@ -31,9 +31,6 @@
                 <li>
                     <a href="{{ url('/ampera') }}" class="block py-2 px-3 rounded md:p-0 transition {{ request()->is('ampera') ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700 font-bold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' }}">AMPERA</a>
                 </li>
-                <li>
-                     <a href="{{ route('login') }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center ml-2">Login</a>
-                </li>
             </ul>
         </div>
     </div>

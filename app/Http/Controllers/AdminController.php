@@ -190,4 +190,24 @@ class AdminController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Data peserta berhasil diperbaiki.');
     }
+
+    /**
+     * Hapus Data Pendaftar (Permanen)
+     */
+    public function destroy($id)
+    {
+        // Cari data
+        $registration = Registration::findOrFail($id);
+
+        // 1. Hapus File Gambar dari Storage (Opsional tapi disarankan)
+        // Pastikan Anda import facade Storage di paling atas file: use Illuminate\Support\Facades\Storage;
+        if ($registration->payment_proof && \Illuminate\Support\Facades\Storage::disk('public')->exists($registration->payment_proof)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($registration->payment_proof);
+        }
+
+        // 2. Hapus Data dari Database
+        $registration->delete();
+
+        return redirect()->back()->with('success', 'Data pendaftar berhasil dihapus permanen.');
+    }
 }

@@ -26,6 +26,7 @@ class RegistrationController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email:dns|max:255', // email:dns mengecek apakah domain email valid
+            'address' => 'required|string|max:1000',
             'phone' => 'required|string|max:20',
             'institution' => 'required|string|max:255',
             'payment_method' => 'required|string',

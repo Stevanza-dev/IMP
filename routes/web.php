@@ -30,6 +30,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/registration/{id}/resend', [AdminController::class, 'resendEmail'])->name('admin.resend');
     Route::get('/registration/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/registration/{id}/update', [AdminController::class, 'update'])->name('admin.update');
+    //Fitur delete
+    Route::delete('/registration/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
     // Halaman Scan
     Route::get('/admin/scan', [AdminController::class, 'scan'])->name('admin.scan');
@@ -46,6 +48,12 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Rekap Absensi Rapat
     Route::get('/rapat/{id}/rekap', [MeetingController::class, 'recap'])->name('meetings.recap');
+
+    // List Rapat (Halaman Utama Manajemen)
+    Route::get('/rapat', [MeetingController::class, 'index'])->name('meetings.index');
+    
+    // Hapus Rapat
+    Route::delete('/rapat/{id}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
 });
 
 // Route Cek Tiket Publik

@@ -13,6 +13,7 @@ class Registration extends Model
     protected $fillable = [
         'name',
         'email',
+        'address',
         'phone',
         'institution',
         'payment_method',

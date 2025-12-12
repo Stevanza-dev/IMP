@@ -155,7 +155,7 @@
                 Temukan rumah keduamu di Semarang. Mari bertumbuh, belajar, dan berkontribusi bersama Ikatan Mahasiswa Pati UNNES.
             </p>
             <div class="relative z-10">
-                <a href="{{ route('login') }}" class="bg-white text-blue-800 font-bold py-3 px-10 rounded-full hover:bg-gray-100 transition shadow-lg inline-block">
+                <a href="#" class="bg-white text-blue-800 font-bold py-3 px-10 rounded-full hover:bg-gray-100 transition shadow-lg inline-block">
                     Gabung Sekarang
                 </a>
             </div>

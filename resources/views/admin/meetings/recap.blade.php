@@ -5,8 +5,8 @@
                 {{ __('Rekap Hasil Rapat') }}
             </h2>
             <div class="flex gap-2">
-                <a href="{{ route('meetings.show', $meeting->id) }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-bold">
-                    &larr; Kembali ke QR
+                <a href="{{ route('meetings.index', $meeting->id) }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-bold">
+                    &larr; Kembali
                 </a>
                 <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-bold flex items-center gap-2">
                     🖨️ Cetak Laporan
