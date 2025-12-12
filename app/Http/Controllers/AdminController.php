@@ -13,12 +13,34 @@ class AdminController extends Controller
     /**
      * Menampilkan daftar pendaftar
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil data terbaru dulu, paginate 10 per halaman
-        $registrations = Registration::latest()->paginate(10);
-        
-        return view('admin.dashboard', compact('registrations'));
+        // Ambil query dasar
+        $query = Registration::query();
+
+        // Filter berdasarkan status (confirmed / pending) jika ada
+        $filter = $request->query('filter');
+        if ($filter === 'confirmed') {
+            $query->where('status', 'confirmed');
+        } elseif ($filter === 'pending') {
+            $query->where('status', 'pending');
+        }
+
+        // Pencarian berdasarkan nama (q)
+        $q = $request->query('q');
+        if (!empty($q)) {
+            $query->where('name', 'like', '%' . $q . '%');
+        }
+
+        // Paginate dan pertahankan query string untuk link pagination
+        $registrations = $query->latest()->paginate(10)->withQueryString();
+
+        // Statistik ringkas (dihitung di backend)
+        $totalCount = Registration::count();
+        $confirmedCount = Registration::where('status', 'confirmed')->count();
+        $pendingCount = Registration::where('status', 'pending')->count();
+
+        return view('admin.dashboard', compact('registrations', 'totalCount', 'confirmedCount', 'pendingCount', 'filter', 'q'));
     }
 
     /**
@@ -173,12 +195,13 @@ class AdminController extends Controller
     {
         $registration = Registration::findOrFail($id);
 
-        // Validasi yang boleh diubah hanya Nama, Email, HP, Instansi
+        // Validasi yang boleh diubah hanya Nama, Email, HP, Instansi, Alamat
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email:dns',
             'phone' => 'required|string',
             'institution' => 'required|string',
+            'address' => 'required|string',
         ]);
 
         $registration->update([
@@ -186,6 +209,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'institution' => $request->institution,
+            'address' => $request->address,
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Data peserta berhasil diperbaiki.');

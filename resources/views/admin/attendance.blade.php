@@ -5,7 +5,7 @@
                 {{ __('Rekap Absensi Peserta') }}
             </h2>
             <a href="{{ route('admin.attendance') }}" class="text-sm text-blue-600 hover:underline">
-                🔄 Refresh Data
+                <i class="fas fa-sync"></i> Refresh Data
             </a>
         </div>
     </x-slot>
@@ -37,7 +37,36 @@
                 <div class="p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Daftar Kehadiran Real-time</h3>
                     
-                    <div class="overflow-x-auto">
+                    {{-- Mobile: stacked attendee cards --}}
+                    <div class="md:hidden space-y-4">
+                        @foreach ($attendees as $guest)
+                        <div class="bg-white p-4 rounded-lg shadow-sm border {{ $guest->checked_in_at ? 'border-green-200' : '' }}">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="text-sm font-semibold text-gray-900">{{ $guest->name }}</div>
+                                    <div class="text-xs text-gray-500">{{ $guest->institution }}</div>
+                                </div>
+                                <div class="text-right">
+                                    @if($guest->checked_in_at)
+                                        <div class="text-sm font-bold text-green-700">{{ $guest->checked_in_at->format('H:i') }} WIB</div>
+                                        <div class="text-xs text-green-600">✅ HADIR</div>
+                                    @else
+                                        <div class="text-sm text-gray-400">-</div>
+                                        <div class="text-xs text-gray-500">Belum Hadir</div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mt-3 flex items-center justify-between">
+                                <div class="text-xs text-gray-600 font-mono">{{ $guest->ticket_code }}</div>
+                                <div class="text-xs text-gray-400">&nbsp;</div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    {{-- Desktop: table view (md+) --}}
+                    <div class="hidden md:block overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 text-sm">
                             <thead class="bg-gray-50">
                                 <tr>

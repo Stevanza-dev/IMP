@@ -19,6 +19,7 @@ class MeetingController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'date' => 'required|date',
             'latitude' => 'required|numeric', // Wajib ada
             'longitude' => 'required|numeric', // Wajib ada
         ]);
@@ -26,7 +27,7 @@ class MeetingController extends Controller
         // Buat Rapat Baru
         $meeting = Meeting::create([
             'title' => $request->title,
-            'date' => now(), // Default hari ini
+            'date' => $request->date,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'token' => Str::random(32), // Token unik 32 karakter
@@ -41,7 +42,7 @@ class MeetingController extends Controller
     public function show($id)
     {
         $meeting = Meeting::findOrFail($id);
-        
+
         // URL yang akan dibuka peserta saat scan QR
         // Contoh: http://imp-pati.org/absen/a8s7d87as8d7a8sd
         $attendanceUrl = route('attendance.form', $meeting->token);
@@ -62,29 +63,34 @@ class MeetingController extends Controller
         // 2. Ambil List Member yang TIDAK HADIR
         // (Member yang ID-nya TIDAK ADA di daftar hadir)
         $absentMembers = \App\Models\Member::whereNotIn('id', $presentMemberIds)
-                            ->orderBy('division', 'asc')
-                            ->orderBy('name', 'asc')
-                            ->get();
+            ->orderBy('division', 'asc')
+            ->orderBy('name', 'asc')
+            ->get();
 
         // 3. Ambil List Member yang HADIR (Join dengan tabel attendance untuk ambil jam masuk)
         // Kita sorting berdasarkan waktu check_in
         $presentMembers = $meeting->attendances()
-                            ->join('members', 'meeting_attendances.member_id', '=', 'members.id')
-                            ->select('meeting_attendances.*', 'members.name', 'members.division')
-                            ->orderBy('meeting_attendances.check_in_at', 'asc')
-                            ->get();
+            ->join('members', 'meeting_attendances.member_id', '=', 'members.id')
+            ->select('meeting_attendances.*', 'members.name', 'members.division')
+            ->orderBy('meeting_attendances.check_in_at', 'asc')
+            ->get();
 
         // Statistik
         $totalMembers = \App\Models\Member::count();
         $totalPresent = $presentMembers->count();
-        $totalAbsent  = $totalMembers - $totalPresent;
-        
+        $totalAbsent = $totalMembers - $totalPresent;
+
         // Persentase Kehadiran
         $attendanceRate = $totalMembers > 0 ? round(($totalPresent / $totalMembers) * 100) : 0;
 
         return view('admin.meetings.recap', compact(
-            'meeting', 'presentMembers', 'absentMembers', 
-            'totalMembers', 'totalPresent', 'totalAbsent', 'attendanceRate'
+            'meeting',
+            'presentMembers',
+            'absentMembers',
+            'totalMembers',
+            'totalPresent',
+            'totalAbsent',
+            'attendanceRate'
         ));
     }
 
@@ -95,7 +101,7 @@ class MeetingController extends Controller
     {
         // Ambil data rapat, urutkan dari yang terbaru
         $meetings = Meeting::latest()->paginate(10);
-        
+
         return view('admin.meetings.index', compact('meetings'));
     }
 
@@ -105,7 +111,7 @@ class MeetingController extends Controller
     public function destroy($id)
     {
         $meeting = Meeting::findOrFail($id);
-        
+
         // Hapus data rapat (Otomatis data absensi ikut terhapus karena 'cascade' di migration)
         $meeting->delete();
 

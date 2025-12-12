@@ -34,6 +34,11 @@
                         <input type="text" name="institution" value="{{ $registration->institution }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Alamat</label>
+                        <textarea name="address" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $registration->address }}</textarea>
+                    </div>
+
                     <div class="flex items-center justify-between">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Simpan Perubahan

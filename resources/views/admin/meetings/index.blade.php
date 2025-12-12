@@ -32,7 +32,54 @@
                             <a href="{{ route('meetings.create') }}" class="text-blue-600 hover:underline font-bold">Buat Rapat Sekarang &rarr;</a>
                         </div>
                     @else
-                        <div class="overflow-x-auto">
+                        {{-- Mobile: stacked meeting cards --}}
+                        <div class="md:hidden space-y-4">
+                            @foreach($meetings as $meeting)
+                            <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="text-sm font-semibold text-gray-900">{{ $meeting->title }}</div>
+                                        <div class="text-xs text-gray-500">Token: {{ substr($meeting->token, 0, 8) }}...</div>
+                                    </div>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        {{ $meeting->attendances->count() }} Hadir
+                                    </span>
+                                </div>
+
+                                <div class="mt-3 text-sm text-gray-700 space-y-1">
+                                    <div><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($meeting->date)->translatedFormat('d F Y') }}</div>
+                                    <div class="text-xs text-gray-500">Dibuat: {{ $meeting->created_at->diffForHumans() }}</div>
+                                </div>
+
+                                <div class="mt-3 flex items-center justify-between gap-2">
+                                    <a href="https://www.google.com/maps?q={{ $meeting->latitude }},{{ $meeting->longitude }}" target="_blank" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
+                                        <i class="fas fa-map-marker-alt"></i> Cek Peta
+                                    </a>
+                                </div>
+
+                                <div class="mt-3 flex gap-2">
+                                    <a href="{{ route('meetings.show', $meeting->id) }}" class="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1.5 rounded text-xs flex items-center gap-1 flex-1 justify-center">
+                                        <i class="fas fa-qrcode"></i> QR
+                                    </a>
+
+                                    <a href="{{ route('meetings.recap', $meeting->id) }}" class="text-white bg-purple-500 hover:bg-purple-600 px-3 py-1.5 rounded text-xs flex items-center gap-1 flex-1 justify-center">
+                                        <i class="fas fa-file-alt"></i> Rekap
+                                    </a>
+
+                                    <form action="{{ route('meetings.destroy', $meeting->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data rapat ini? Seluruh data absensi peserta di rapat ini juga akan terhapus.');" class="flex-1">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="w-full text-white bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded text-xs flex items-center gap-1 justify-center">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        {{-- Desktop: table view (md+) --}}
+                        <div class="hidden md:block overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>

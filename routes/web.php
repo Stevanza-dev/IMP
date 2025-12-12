@@ -8,6 +8,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MemberController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -22,7 +23,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Dashboard khusus Admin Pendaftaran
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-    
+
     // Action Buttons
     Route::patch('/registration/{id}/approve', [AdminController::class, 'approve'])->name('admin.approve');
     Route::patch('/registration/{id}/reject', [AdminController::class, 'reject'])->name('admin.reject');
@@ -51,9 +52,12 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // List Rapat (Halaman Utama Manajemen)
     Route::get('/rapat', [MeetingController::class, 'index'])->name('meetings.index');
-    
+
     // Hapus Rapat
     Route::delete('/rapat/{id}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
+
+    // List Member
+    Route::get('/admin/members', [MemberController::class, 'index'])->name('members.index');
 });
 
 // Route Cek Tiket Publik
@@ -67,4 +71,4 @@ Route::post('/daftar-ampera', [RegistrationController::class, 'store'])->name('r
 Route::get('/absen-rapat/{token}', [AttendanceController::class, 'show'])->name('attendance.form');
 Route::post('/absen-rapat/{token}', [AttendanceController::class, 'store'])->name('attendance.store');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
