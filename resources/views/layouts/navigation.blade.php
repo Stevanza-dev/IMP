@@ -30,6 +30,15 @@
                     <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.index')">
                         {{ __('Data Panitia') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
+                        {{ __('Divisi') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('programs.index')" :active="request()->routeIs('programs.*')">
+                        {{ __('Program Kerja') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
+                        {{ __('Sosmed') }}
+                    </x-nav-link>
                 </div>
             </div>
 

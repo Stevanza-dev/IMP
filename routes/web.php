@@ -9,6 +9,9 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Admin\SocialMediaController;
+use App\Http\Controllers\Admin\DivisionController;
+use App\Http\Controllers\Admin\WorkProgramController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -58,6 +61,11 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // List Member
     Route::get('/admin/members', [MemberController::class, 'index'])->name('members.index');
+
+    //set database
+    Route::resource('admin/socials', SocialMediaController::class);
+    Route::resource('admin/divisions', DivisionController::class);
+    Route::resource('admin/programs', WorkProgramController::class);
 });
 
 // Route Cek Tiket Publik
