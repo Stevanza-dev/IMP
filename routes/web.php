@@ -60,12 +60,13 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/rapat/{id}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
 
     // List Member
-    Route::get('/admin/members', [MemberController::class, 'index'])->name('members.index');
+    // Route::get('/admin/members', [MemberController::class, 'index'])->name('members.index');
 
     //set database
     Route::resource('admin/socials', SocialMediaController::class);
     Route::resource('admin/divisions', DivisionController::class);
     Route::resource('admin/programs', WorkProgramController::class);
+    Route::resource('admin/members', MemberController::class);
 });
 
 // Route Cek Tiket Publik
