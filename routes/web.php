@@ -75,6 +75,8 @@ Route::get('/cek-tiket', [TicketController::class, 'index'])->name('ticket.check
 // Route untuk menampilkan form
 Route::get('/daftar-ampera', [RegistrationController::class, 'create'])->name('registration.create');
 Route::post('/daftar-ampera', [RegistrationController::class, 'store'])->name('registration.store'); //kirim data
+Route::get('/daftar-ampera/sukses', [RegistrationController::class, 'success'])->name('registration.success'); // Halaman Sukses
+
 
 // Route Absensi Peserta (Via QR Code)
 Route::get('/absen-rapat/{token}', [AttendanceController::class, 'show'])->name('attendance.form');

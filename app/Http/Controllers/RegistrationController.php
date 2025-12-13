@@ -47,7 +47,15 @@ class RegistrationController extends Controller
         Registration::create($validated);
 
         // 4. Redirect dengan Pesan Sukses
-        return redirect()->route('registration.create')
-            ->with('success', 'Pendaftaran berhasil! Silakan tunggu verifikasi admin 1x24 jam. Cek email Anda secara berkala.');
+        // 4. Redirect ke Halaman Sukses
+        return redirect()->route('registration.success');
+    }
+
+    /**
+     * Menampilkan Halaman Sukses Pendaftaran
+     */
+    public function success()
+    {
+        return view('registrations.success');
     }
 }

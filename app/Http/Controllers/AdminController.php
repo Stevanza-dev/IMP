@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function reject($id)
     {
         $registration = Registration::findOrFail($id);
-        
+
         $registration->update([
             'status' => 'rejected',
             'ticket_code' => null // Pastikan tiket kosong jika ditolak
@@ -139,20 +139,20 @@ class AdminController extends Controller
     {
         // Hitung Statistik
         $totalPeserta = Registration::where('status', 'confirmed')->count();
-        
+
         $sudahHadir = Registration::where('status', 'confirmed')
-                        ->whereNotNull('checked_in_at')
-                        ->count();
-        
+            ->whereNotNull('checked_in_at')
+            ->count();
+
         $belumHadir = $totalPeserta - $sudahHadir;
 
         // Ambil data peserta (Urutkan yang baru hadir paling atas)
         // Kita hanya ambil yang statusnya 'confirmed' (sudah bayar)
         $attendees = Registration::where('status', 'confirmed')
-                        ->orderByRaw('checked_in_at IS NULL') // Yang hadir ditaruh atas
-                        ->orderBy('checked_in_at', 'desc')    // Yang baru scan paling atas
-                        ->orderBy('name', 'asc')
-                        ->get();
+            ->orderByRaw('checked_in_at IS NULL') // Yang hadir ditaruh atas
+            ->orderBy('checked_in_at', 'desc')    // Yang baru scan paling atas
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('admin.attendance', compact('totalPeserta', 'sudahHadir', 'belumHadir', 'attendees'));
     }
@@ -172,7 +172,7 @@ class AdminController extends Controller
             // Panggil Mailable yang sudah kita buat sebelumnya
             \Illuminate\Support\Facades\Mail::to($registration->email)
                 ->send(new \App\Mail\TicketApproved($registration));
-            
+
             return back()->with('success', 'Email tiket berhasil dikirim ulang ke: ' . $registration->email);
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal mengirim email. Cek koneksi internet.');
