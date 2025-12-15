@@ -94,8 +94,8 @@
 
                             <div class="mt-3 flex items-center justify-between">
                                 <div class="text-sm">
-                                    <img src="{{ asset('storage/' . $reg->payment_proof) }}" data-full="{{ asset('storage/' . $reg->payment_proof) }}" alt="Bukti Pembayaran" class="w-20 h-20 object-cover rounded cursor-pointer border" onclick="openImageModal(this.dataset.full)">
-                                    <div class="text-xs text-gray-500 mt-2">{{ $reg->payment_method }}</div>
+                                    <img src="{{ $reg->payment_url ?? '' }}" data-full="{{ $reg->payment_url ?? '' }}" alt="Bukti Pembayaran" class="w-16 h-16 object-cover rounded cursor-pointer border" onclick="openImageModal(this.dataset.full)">
+                                    <div class="text-xs text-gray-500 mt-1">{{ $reg->payment_method }}</div>
                                 </div>
 
                                 <div class="flex items-center space-x-2">
@@ -175,8 +175,8 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <img src="{{ asset('storage/' . $reg->payment_proof) }}" data-full="{{ asset('storage/' . $reg->payment_proof) }}" alt="Bukti Pembayaran" class="w-16 h-16 object-cover rounded cursor-pointer border" onclick="openImageModal(this.dataset.full)">
-                                        <div class="text-xs text-gray-500 mt-1">{{ $reg->payment_method }}</div>
+                                        <img src="{{ $reg->payment_url ?? '' }}" data-full="{{ $reg->payment_url ?? '' }}" alt="Bukti Pembayaran" class="w-20 h-20 object-cover rounded cursor-pointer border" onclick="openImageModal(this.dataset.full)">
+                                        <div class="text-xs text-gray-500 mt-2">{{ $reg->payment_method }}</div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">

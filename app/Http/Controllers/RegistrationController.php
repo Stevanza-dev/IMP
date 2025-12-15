@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registration;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class RegistrationController extends Controller
 {
@@ -33,13 +33,19 @@ class RegistrationController extends Controller
             'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Maksimal 2MB
         ]);
 
-        // 2. Handle Upload Gambar
-        // Gambar akan disimpan di folder: cloudinary/uploads
+        // 2. Handle Upload Gambar (Cloudinary Upload API)
         if ($request->hasFile('payment_proof')) {
-            // Gunakan disk cloudinary
-            $filePath = $request->file('payment_proof')->store('uploads', 'cloudinary');
+            $uploadedFile = $request->file('payment_proof');
+            $path = $uploadedFile->getPathname(); // lebih aman daripada getRealPath()
 
-            $validated['payment_proof'] = $filePath;
+            $uploadResult = Cloudinary::uploadApi()->upload($path, [
+                'folder' => 'UploadBuktiBayar',
+                'resource_type' => 'image',
+            ]);
+
+            // Simpan Public ID dan Secure URL
+            $validated['payment_proof'] = $uploadResult['public_id'] ?? null;
+            $validated['payment_url'] = $uploadResult['secure_url'] ?? null;
         }
 
         // 3. Simpan ke Database

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Registration;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Import Str untuk generate kode acak
+use Illuminate\Support\Str; // kode acak
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use App\Mail\TicketApproved;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AdminController extends Controller
 {
@@ -170,8 +172,8 @@ class AdminController extends Controller
 
         try {
             // Panggil Mailable yang sudah kita buat sebelumnya
-            \Illuminate\Support\Facades\Mail::to($registration->email)
-                ->send(new \App\Mail\TicketApproved($registration));
+            Mail::to($registration->email)
+                ->send(new TicketApproved($registration));
 
             return back()->with('success', 'Email tiket berhasil dikirim ulang ke: ' . $registration->email);
         } catch (\Exception $e) {
@@ -220,16 +222,17 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        // Cari data
         $registration = Registration::findOrFail($id);
 
-        // 1. Hapus File Gambar dari Storage (Opsional tapi disarankan)
-        // Pastikan Anda import facade Storage di paling atas file: use Illuminate\Support\Facades\Storage;
-        if ($registration->payment_proof && \Illuminate\Support\Facades\Storage::disk('public')->exists($registration->payment_proof)) {
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($registration->payment_proof);
+        // Hapus dari Cloudinary
+        if (!empty($registration->payment_proof)) {
+            try {
+                Cloudinary::uploadApi()->destroy($registration->payment_proof);
+            } catch (\Throwable $e) {
+                // abaikan bila gagal
+            }
         }
 
-        // 2. Hapus Data dari Database
         $registration->delete();
 
         return redirect()->back()->with('success', 'Data pendaftar berhasil dihapus permanen.');

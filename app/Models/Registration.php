@@ -18,6 +18,7 @@ class Registration extends Model
         'institution',
         'payment_method',
         'payment_proof',
+        'payment_url',
         'ticket_code',
         'status',
         'checked_in_at',
