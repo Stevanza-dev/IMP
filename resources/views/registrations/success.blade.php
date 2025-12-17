@@ -54,14 +54,20 @@
             </h1>
 
             <p class="text-lg text-gray-600 mb-8 font-medium leading-relaxed">
-                Tiket akan dikirimkan ke Email Anda secara berkala.
+                Tiket akan dikirimkan ke Email Anda secara berkala. Jangan Lupa Konfirmasi ke Narahubung di bawah ini.
             </p>
 
             <div class="space-y-4">
-                <a href="YOUR_WHATSAPP_GROUP_LINK_HERE" target="_blank"
-                    class="inline-block w-full py-3 px-6 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition transform hover:scale-105 shadow-md">
-                    <i class="fab fa-whatsapp mr-2"></i> Gabung Grup WhatsApp
-                </a>
+                <div class="space-y-2">
+                    <a href="https://wa.me/6287822043478" target="_blank"
+                        class="inline-block w-full py-3 px-6 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition transform hover:scale-105 shadow-md">
+                        <i class="fab fa-whatsapp mr-2"></i> Annas
+                    </a>
+                    <a href="https://wa.me/6289520522580" target="_blank"
+                        class="inline-block w-full py-3 px-6 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition transform hover:scale-105 shadow-md">
+                        <i class="fab fa-whatsapp mr-2"></i> Elena
+                    </a>
+                </div>
 
                 <a href="{{ route('ampera') }}"
                     class="inline-block w-full py-3 px-6 rounded-lg bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition transform hover:scale-105 shadow-md">

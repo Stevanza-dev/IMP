@@ -25,12 +25,16 @@ class RegistrationController extends Controller
         // Kita pastikan email valid dan gambar bukti bayar sesuai aturan
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email:dns|max:255', // email:dns mengecek apakah domain email valid
+            'email' => 'required|email:dns|max:255|unique:registrations,email',
             'address' => 'required|string|max:1000',
             'phone' => 'required|string|max:20',
             'institution' => 'required|string|max:255',
             'payment_method' => 'required|string',
-            'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Maksimal 2MB
+            'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'email.unique' => 'Email ini sudah terdaftar sebelumnya.',
+            'email.email' => 'Format email tidak valid.',
+            'email.required' => 'Email harus diisi.',
         ]);
 
         // 2. Handle Upload Gambar (Cloudinary Upload API)
@@ -53,7 +57,6 @@ class RegistrationController extends Controller
         Registration::create($validated);
 
         // 4. Redirect dengan Pesan Sukses
-        // 4. Redirect ke Halaman Sukses
         return redirect()->route('registration.success');
     }
 

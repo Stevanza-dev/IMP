@@ -70,7 +70,6 @@
 
             <h1 class="font-royal text-5xl md:text-7xl font-black mb-4 leading-tight text-white drop-shadow-md">
                 <span class="text-gold-gradient block mb-2">SI SEMAR 2026</span>
-                {{-- <span class="text-blue-900">SI SEMAR 2026</span> --}}
             </h1>
 
             <p
@@ -79,9 +78,9 @@
             </p>
 
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="{{ route('sisemar') }}"
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScusVXtTk7OLmE9QENj7tc16kJdy1I7XdKzflYSAa_xYBZf4w/viewform" target="_blank"
                     class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg border-b-4 border-yellow-700">
-                    <i class="fas fa-scroll mr-2"></i> Daftar Tryout
+                    <i class="fas fa-scroll mr-2"></i> Daftar Sekarang
                 </a>
 
                 <a href="https://instagram.com/sisemar_imp" target="_blank"

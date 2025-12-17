@@ -59,9 +59,6 @@ Route::middleware('auth', 'verified')->group(function () {
     // Hapus Rapat
     Route::delete('/rapat/{id}', [MeetingController::class, 'destroy'])->name('meetings.destroy');
 
-    // List Member
-    // Route::get('/admin/members', [MemberController::class, 'index'])->name('members.index');
-
     //set database
     Route::resource('admin/socials', SocialMediaController::class);
     Route::resource('admin/divisions', DivisionController::class);
