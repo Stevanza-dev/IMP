@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Member;
 
 class MeetingController extends Controller
 {
@@ -57,38 +58,40 @@ class MeetingController extends Controller
     {
         $meeting = Meeting::with('attendances.member')->findOrFail($id);
 
-        // 1. Ambil semua ID member yang hadir di rapat ini
-        $presentMemberIds = $meeting->attendances->pluck('member_id')->toArray();
+        $attendances = $meeting->attendances()->with('member')->get();
 
-        // 2. Ambil List Member yang TIDAK HADIR
-        // (Member yang ID-nya TIDAK ADA di daftar hadir)
-        $absentMembers = \App\Models\Member::whereNotIn('id', $presentMemberIds)
+        // 1. Ambil List Member yang HADIR (Status = present)
+        $presentMembers = $attendances->where('status', 'present')->sortBy('check_in_at');
+
+        // 2. Ambil List Member yang IZIN (Status = permission)
+        $permissionMembers = $attendances->where('status', 'permission')->sortBy('check_in_at');
+
+        // 3. Ambil List Member yang TIDAK ADA DATA ABSENSI (Alpha)
+        $attendedMemberIds = $attendances->pluck('member_id')->toArray();
+
+        $absentMembers = Member::whereNotIn('id', $attendedMemberIds)
             ->orderBy('division', 'asc')
             ->orderBy('name', 'asc')
             ->get();
 
-        // 3. Ambil List Member yang HADIR (Join dengan tabel attendance untuk ambil jam masuk)
-        // Kita sorting berdasarkan waktu check_in
-        $presentMembers = $meeting->attendances()
-            ->join('members', 'meeting_attendances.member_id', '=', 'members.id')
-            ->select('meeting_attendances.*', 'members.name', 'members.division')
-            ->orderBy('meeting_attendances.check_in_at', 'asc')
-            ->get();
-
         // Statistik
-        $totalMembers = \App\Models\Member::count();
+        $totalMembers = Member::count();
         $totalPresent = $presentMembers->count();
-        $totalAbsent = $totalMembers - $totalPresent;
+        $totalPermission = $permissionMembers->count();
+        $totalAbsent = $absentMembers->count();
 
-        // Persentase Kehadiran
+        // Persentase Kehadiran (Hadir / Total)
+        // Izin tidak dihitung sebagai hadir, tapi mengurangi jumlah alpha.
         $attendanceRate = $totalMembers > 0 ? round(($totalPresent / $totalMembers) * 100) : 0;
 
         return view('admin.meetings.recap', compact(
             'meeting',
             'presentMembers',
+            'permissionMembers',
             'absentMembers',
             'totalMembers',
             'totalPresent',
+            'totalPermission',
             'totalAbsent',
             'attendanceRate'
         ));

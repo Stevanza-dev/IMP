@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class MeetingAttendance extends Model
 {
     protected $fillable = [
-        'meeting_id', 'member_id', 'check_in_at', 'distance_in_meters'
+        'meeting_id',
+        'member_id',
+        'check_in_at',
+        'distance_in_meters',
+        'status',
+        'notes'
     ];
 
     // Relasi balik ke Member (agar kita tahu ini absennya siapa)

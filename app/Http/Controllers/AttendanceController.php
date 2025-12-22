@@ -32,41 +32,56 @@ class AttendanceController extends Controller
 
         $request->validate([
             'member_id' => 'required|exists:members,id',
-            'latitude' => 'required|numeric',  // Lokasi Peserta
-            'longitude' => 'required|numeric', // Lokasi Peserta
+            'status' => 'required|in:present,permission',
+            'latitude' => 'required_if:status,present|nullable|numeric',
+            'longitude' => 'required_if:status,present|nullable|numeric',
+            'notes' => 'required_if:status,permission|nullable|string',
         ]);
 
         // Cek apakah sudah pernah absen?
         $existing = MeetingAttendance::where('meeting_id', $meeting->id)
-                        ->where('member_id', $request->member_id)
-                        ->first();
+            ->where('member_id', $request->member_id)
+            ->first();
 
         if ($existing) {
             return back()->with('error', 'Anda sudah melakukan absensi sebelumnya.');
         }
 
-        // --- HITUNG JARAK (Haversine Formula) ---
-        $distance = $this->calculateDistance(
-            $meeting->latitude, $meeting->longitude, // Titik Pusat Rapat
-            $request->latitude, $request->longitude  // Posisi Peserta
-        );
+        $distance = null;
 
-        // Batas toleransi jarak (meter)
-        $radiusLimit = 20; 
+        // Cek Lokasi HANYA JIKA Status = Hadir
+        if ($request->status === 'present') {
+            // --- HITUNG JARAK (Haversine Formula) ---
+            $distance = $this->calculateDistance(
+                $meeting->latitude,
+                $meeting->longitude, // Titik Pusat Rapat
+                $request->latitude,
+                $request->longitude  // Posisi Peserta
+            );
 
-        if ($distance > $radiusLimit) {
-            return back()->with('error', "GAGAL! Anda berada di luar area rapat. Jarak Anda: " . round($distance) . " meter. Harap mendekat ke lokasi.");
+            // Batas toleransi jarak (meter)
+            $radiusLimit = 20;
+
+            if ($distance > $radiusLimit) {
+                return back()->with('error', "GAGAL! Anda berada di luar area rapat. Jarak Anda: " . round($distance) . " meter. Harap mendekat ke lokasi.");
+            }
         }
 
-        // Jika Lolos Validasi Lokasi
+        // Jika Lolos Validasi (atau Izin)
         MeetingAttendance::create([
             'meeting_id' => $meeting->id,
             'member_id' => $request->member_id,
             'check_in_at' => now(),
-            'distance_in_meters' => $distance
+            'distance_in_meters' => $distance, // Bisa null jika izin
+            'status' => $request->status,
+            'notes' => $request->notes,
         ]);
 
-        return back()->with('success', 'Absensi Berhasil! Jarak: ' . round($distance) . 'm. Selamat Rapat.');
+        $msg = $request->status === 'present'
+            ? 'Absensi Berhasil! Jarak: ' . round($distance) . 'm. Selamat Rapat.'
+            : 'Izin Berhasil Tercatat.';
+
+        return back()->with('success', $msg);
     }
 
     /**
@@ -80,8 +95,8 @@ class AttendanceController extends Controller
         $dLon = deg2rad($lon2 - $lon1);
 
         $a = sin($dLat / 2) * sin($dLat / 2) +
-             cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
-             sin($dLon / 2) * sin($dLon / 2);
+            cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+            sin($dLon / 2) * sin($dLon / 2);
 
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 

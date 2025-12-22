@@ -60,7 +60,31 @@
                             readonly placeholder="Otomatis terisi..." required>
                     </div>
 
-                    <div class="mb-6 p-3 bg-blue-50 rounded-lg text-sm text-center border border-blue-200">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Status Kehadiran</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="status" value="present" checked
+                                    class="w-5 h-5 text-blue-600 focus:ring-blue-500" onclick="toggleStatus('present')">
+                                <span class="text-gray-700 font-medium">Hadir</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="status" value="permission"
+                                    class="w-5 h-5 text-blue-600 focus:ring-blue-500" onclick="toggleStatus('permission')">
+                                <span class="text-gray-700 font-medium">Izin / Sakit</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="notes-container" class="mb-4 hidden">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Alasan Izin</label>
+                        <textarea name="notes" id="notes" rows="3"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                            placeholder="Tuliskan alasan izin Anda..."></textarea>
+                    </div>
+
+                    <div id="location-container"
+                        class="mb-6 p-3 bg-blue-50 rounded-lg text-sm text-center border border-blue-200">
                         <p id="location-status" class="text-blue-800 font-semibold animate-pulse">📡 Mencari lokasi Anda...
                         </p>
                     </div>
@@ -92,27 +116,79 @@
             divisionInput.value = division ? division : '';
         });
 
-        // 2. Ambil Lokasi GPS User (Otomatis saat load)
+        // 2. Logic Status & Lokasi
         const statusTxt = document.getElementById('location-status');
         const latInput = document.getElementById('lat');
         const lngInput = document.getElementById('lng');
         const btnSubmit = document.getElementById('btn-submit');
+        const notesContainer = document.getElementById('notes-container');
+        const notesInput = document.getElementById('notes');
+        const locationContainer = document.getElementById('location-container');
 
+        let isLocationFound = false;
+
+        function toggleStatus(status) {
+            if (status === 'present') {
+                // Mode Hadir: Wajib Lokasi
+                notesContainer.classList.add('hidden');
+                notesInput.required = false;
+
+                locationContainer.classList.remove('hidden');
+
+                checkSubmitButton();
+            } else {
+                // Mode Izin: Skip Lokasi, Wajib Alasan
+                notesContainer.classList.remove('hidden');
+                notesInput.required = true;
+
+                locationContainer.classList.add('hidden');
+
+                // Selalu enable submit jika izin (asalkan nama dipilih)
+                checkSubmitButton();
+            }
+        }
+
+        function checkSubmitButton() {
+            const status = document.querySelector('input[name="status"]:checked').value;
+
+            if (status === 'present') {
+                if (isLocationFound) {
+                    enableButton();
+                } else {
+                    disableButton();
+                }
+            } else {
+                // Izin -> Enable button directly (validation handled by HTML 'required' on notes/member select)
+                enableButton();
+            }
+        }
+
+        function enableButton() {
+            btnSubmit.disabled = false;
+            btnSubmit.classList.remove('bg-gray-400', 'cursor-not-allowed');
+            btnSubmit.classList.add('bg-blue-600', 'hover:bg-blue-700');
+        }
+
+        function disableButton() {
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('bg-gray-400', 'cursor-not-allowed');
+            btnSubmit.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+        }
+
+        // Ambil Lokasi GPS User (Otomatis saat load)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 // Jika Sukses
                 function (position) {
                     latInput.value = position.coords.latitude;
                     lngInput.value = position.coords.longitude;
+                    isLocationFound = true;
 
                     statusTxt.innerHTML = "✅ Lokasi Ditemukan. Siap Absen.";
                     statusTxt.classList.remove('animate-pulse', 'text-blue-800');
                     statusTxt.classList.add('text-green-700');
 
-                    // Aktifkan Tombol
-                    btnSubmit.disabled = false;
-                    btnSubmit.classList.remove('bg-gray-400', 'cursor-not-allowed');
-                    btnSubmit.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    checkSubmitButton();
                 },
                 // Jika Gagal/Ditolak
                 function (error) {
@@ -122,11 +198,14 @@
 
                     statusTxt.innerHTML = msg;
                     statusTxt.classList.add('text-red-600');
+                    isLocationFound = false;
+                    checkSubmitButton();
                 },
                 { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
             );
         } else {
             statusTxt.innerHTML = "Browser Anda tidak mendukung GPS.";
+            isLocationFound = false;
         }
     </script>
 </body>
