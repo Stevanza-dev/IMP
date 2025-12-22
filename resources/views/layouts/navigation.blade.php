@@ -12,33 +12,39 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @can('view dashboard')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endcan
 
-                    <x-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
-                        {{ __('Absensi') }}
-                    </x-nav-link>
+                    @can('manage ampera')
+                        <x-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
+                            {{ __('Absensi') }}
+                        </x-nav-link>
 
-                    <x-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
-                        {{ __('Scan QR') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
+                            {{ __('Scan QR') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')">
+                            {{ __('Data Panitia') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('meetings.index')" :active="request()->routeIs('meetings.*')">
+                            {{ __('Manajemen Rapat') }}
+                        </x-nav-link>
+                    @endcan
 
-                    <x-nav-link :href="route('meetings.index')" :active="request()->routeIs('meetings.index')">
-                        {{ __('Manajemen Rapat') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.index')">
-                        {{ __('Data Panitia') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
-                        {{ __('Divisi') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('programs.index')" :active="request()->routeIs('programs.*')">
-                        {{ __('Program Kerja') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
-                        {{ __('Sosmed') }}
-                    </x-nav-link>
+                    @can('manage imp')
+                        <x-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
+                            {{ __('Divisi') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('programs.index')" :active="request()->routeIs('programs.*')">
+                            {{ __('Program Kerja') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
+                            {{ __('Sosmed') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -98,23 +104,39 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @can('view dashboard')
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+            @endcan
 
-            <x-responsive-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
-                {{ __('Absensi') }}
-            </x-responsive-nav-link>
+            @can('manage ampera')
+                <x-responsive-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
+                    {{ __('Absensi') }}
+                </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
-                {{ __('Scan QR') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('meetings.index')" :active="request()->routeIs('meetings.index')">
-                {{ __('Manajemen Rapat') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('members.index')" :active="request()->routeIs('members.index')">
-                {{ __('Data Panitia') }}
-            </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
+                    {{ __('Scan QR') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')">
+                    {{ __('Data Panitia') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('meetings.index')" :active="request()->routeIs('meetings.*')">
+                    {{ __('Manajemen Rapat') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage imp')
+                <x-responsive-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
+                    {{ __('Divisi') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('programs.index')" :active="request()->routeIs('programs.*')">
+                    {{ __('Program Kerja') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
+                    {{ __('Sosmed') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
