@@ -53,7 +53,6 @@ class SisemarAttendanceController extends Controller
         ];
 
         $attendees = Sisemar::whereNotNull('checked_in_at')
-            ->with(['checkedInBy'])
             ->latest('checked_in_at')
             ->get();
 
