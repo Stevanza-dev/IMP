@@ -12,6 +12,9 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\WorkProgramController;
+use App\Http\Controllers\SisemarAdminController;
+use App\Http\Controllers\SisemarRedemptionController;
+use App\Http\Controllers\SisemarAttendanceController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -21,7 +24,8 @@ Route::get('/sisemar', [HomeController::class, 'sisemar'])->name('sisemar');
 Route::get('/ampera', [HomeController::class, 'ampera'])->name('ampera');
 
 // Route Cek Tiket Publik
-Route::get('/cek-tiket', [TicketController::class, 'index'])->name('ticket.check');
+Route::get('/ampera/cek-tiket', [TicketController::class, 'index'])->name('ampera.ticket.check');
+Route::get('/sisemar/cek-tiket', [TicketController::class, 'sisemar'])->name('sisemar.ticket.check');
 
 // Route untuk menampilkan form pendaftaran Ampera
 Route::get('/daftar-ampera', [RegistrationController::class, 'create'])->name('registration.create');
@@ -94,8 +98,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // -----------------------------------------------------------
     // 3. GROUP SI SEMAR
     // -----------------------------------------------------------
-    Route::middleware(['permission:manage sisemar'])->group(function () {
-        //Comingsoon yah
+    Route::middleware(['permission:manage sisemar'])->prefix('admin/sisemar')->group(function () {
+        // Dashboard & Approval
+        Route::get('/', [SisemarAdminController::class, 'index'])->name('admin.sisemar.index');
+        Route::post('/{id}/approve', [SisemarAdminController::class, 'approve'])->name('admin.sisemar.approve');
+        Route::post('/{id}/reject', [SisemarAdminController::class, 'reject'])->name('admin.sisemar.reject');
+
+        // Penukaran Tiket Fisik (H-7)
+        Route::get('/redemption/scan', [SisemarRedemptionController::class, 'scanPage'])->name('admin.sisemar.redemption.scan');
+        Route::post('/redemption/process', [SisemarRedemptionController::class, 'process'])->name('admin.sisemar.redemption.process');
+        Route::get('/redemption/success/{id}', [SisemarRedemptionController::class, 'success'])->name('admin.sisemar.redemption.success');
+
+        // Absensi Hari H
+        Route::get('/attendance/scan', [SisemarAttendanceController::class, 'scanPage'])->name('admin.sisemar.attendance.scan');
+        Route::post('/attendance/check-in', [SisemarAttendanceController::class, 'checkIn'])->name('admin.sisemar.attendance.checkin');
+        Route::get('/attendance/recap', [SisemarAttendanceController::class, 'recap'])->name('admin.sisemar.attendance.recap');
     });
 
     // -----------------------------------------------------------

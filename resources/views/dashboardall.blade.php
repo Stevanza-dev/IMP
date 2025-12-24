@@ -40,7 +40,7 @@
                                 Kelola data anggota, divisi, program kerja, dan inventaris organisasi IMP secara terpusat.
                             </p>
                             <div class="mt-6">
-                                <a href="{{ route('members.index') }}"
+                                <a href="{{ route('divisions.index') }}"
                                     class="inline-block bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition">
                                     Masuk Dashboard IMP &rarr;
                                 </a>
@@ -57,7 +57,7 @@
                             <div class="flex justify-between items-start">
                                 <div>
                                     <h4 class="text-xl font-bold">AMPERA 2026</h4>
-                                    <p class="text-emerald-100 text-sm mt-1">Ajang Manajemen Pendaftaran</p>
+                                    <p class="text-emerald-100 text-sm mt-1">Aksi Mahasiswa Peduli Konservasi Pati</p>
                                 </div>
                                 <div class="bg-white bg-opacity-20 p-3 rounded-lg">
                                     <i class="fas fa-ticket-alt text-2xl"></i>
@@ -83,22 +83,22 @@
                         <div class="p-6">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h4 class="text-xl font-bold">SI SEMAR</h4>
-                                    <p class="text-orange-100 text-sm mt-1">Sistem Sekolah Binaan</p>
+                                    <h4 class="text-xl font-bold">SI SEMAR 2026</h4>
+                                    <p class="text-orange-100 text-sm mt-1">Simulasi Seleksi Masuk Perguruan Tinggi Negeri
+                                    </p>
                                 </div>
                                 <div class="bg-white bg-opacity-20 p-3 rounded-lg">
                                     <i class="fas fa-graduation-cap text-2xl"></i>
                                 </div>
                             </div>
                             <p class="mt-4 text-sm text-orange-50 opacity-90">
-                                Monitoring dan manajemen kegiatan sekolah binaan, relawan, dan progress siswa.
+                                Manajemen Pendaftaran Peserta, Penukaran Tiket dan Absen Hari H.
                             </p>
                             <div class="mt-6">
-                                <!-- Link sementara karena belum ada route-nya -->
-                                <button disabled
-                                    class="inline-block bg-white bg-opacity-50 text-white font-semibold px-4 py-2 rounded-lg cursor-not-allowed">
-                                    Segera Hadir
-                                </button>
+                                <a href="{{ route('admin.sisemar.index') }}"
+                                    class="inline-block bg-white text-orange-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition">
+                                    Kelola Event &rarr;
+                                </a>
                             </div>
                         </div>
                     </div>

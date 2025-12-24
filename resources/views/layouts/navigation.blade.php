@@ -45,6 +45,24 @@
                             {{ __('Sosmed') }}
                         </x-nav-link>
                     @endcan
+
+                    @can('manage sisemar')
+                        <x-nav-link :href="route('admin.sisemar.index')" :active="request()->routeIs('admin.sisemar.*')">
+                            {{ __('Home Si Semar') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.sisemar.redemption.scan')"
+                            :active="request()->routeIs('admin.sisemar.redemption.scan')">
+                            {{ __('Penukaran') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.sisemar.attendance.scan')"
+                            :active="request()->routeIs('admin.sisemar.attendance.scan')">
+                            {{ __('Absen Hari H') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.sisemar.attendance.recap')"
+                            :active="request()->routeIs('admin.sisemar.attendance.recap')">
+                            {{ __('Recap Hari H') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -135,6 +153,24 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
                     {{ __('Sosmed') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage sisemar')
+                <x-responsive-nav-link :href="route('admin.sisemar.index')" :active="request()->routeIs('admin.sisemar.*')">
+                    {{ __('Home Si Semar') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.sisemar.redemption.scan')"
+                    :active="request()->routeIs('admin.sisemar.redemption.scan')">
+                    {{ __('Penukaran') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.sisemar.attendance.scan')"
+                    :active="request()->routeIs('admin.sisemar.attendance.scan')">
+                    {{ __('Absen Hari H') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.sisemar.attendance.recap')"
+                    :active="request()->routeIs('admin.sisemar.attendance.recap')">
+                    {{ __('Recap Hari H') }}
                 </x-responsive-nav-link>
             @endcan
         </div>

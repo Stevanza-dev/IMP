@@ -61,7 +61,7 @@
                     class="bg-white text-emerald-900 font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition flex items-center justify-center gap-2">
                     <i class="fab fa-instagram text-xl"></i> Instagram Official
                 </a>
-                <a href="{{ route('ticket.check') }}"
+                <a href="{{ route('ampera.ticket.check') }}"
                     class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-blue-900/50 border border-blue-400">
                     Cek Tiket
                 </a>

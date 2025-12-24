@@ -78,7 +78,8 @@
             </p>
 
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScusVXtTk7OLmE9QENj7tc16kJdy1I7XdKzflYSAa_xYBZf4w/viewform" target="_blank"
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScusVXtTk7OLmE9QENj7tc16kJdy1I7XdKzflYSAa_xYBZf4w/viewform"
+                    target="_blank"
                     class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg border-b-4 border-yellow-700">
                     <i class="fas fa-scroll mr-2"></i> Daftar Sekarang
                 </a>
@@ -87,6 +88,12 @@
                     class="bg-white text-blue-600 font-bold py-4 px-10 rounded-full hover:bg-blue-50 transition flex items-center justify-center gap-2 border border-blue-200 shadow-lg">
                     <i class="fab fa-instagram text-xl"></i> Info Resmi
                 </a>
+
+                <a href="{{ route('sisemar.ticket.check') }}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg border-b-4 border-blue-800">
+                    <i class="fas fa-ticket-alt mr-2"></i> Cek Tiket
+                </a>
+
             </div>
         </div>
 
