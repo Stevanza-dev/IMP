@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Revolution\Google\Sheets\Facades\Sheets;
 
 class RegistrationController extends Controller
 {
@@ -54,9 +55,33 @@ class RegistrationController extends Controller
 
         // 3. Simpan ke Database
         // Status otomatis 'pending' sesuai default di database
-        Registration::create($validated);
+        $registration = Registration::create($validated);
 
-        // 4. Redirect dengan Pesan Sukses
+        // 4. Kirim ke Google Sheets
+        try {
+            $spreadsheetId = config('google.spreadsheet_id');
+            if ($spreadsheetId) {
+                Sheets::spreadsheet($spreadsheetId)
+                    ->sheet('Sheet1')
+                    ->append([
+                        [
+                            $registration->created_at->format('Y-m-d H:i:s'),
+                            $registration->name,
+                            $registration->email,
+                            "'" . $registration->phone,
+                            $registration->institution,
+                            $registration->address,
+                            $registration->payment_method,
+                            $registration->payment_url, // URL Bukti Bayar
+                            'pending'
+                        ]
+                    ]);
+            }
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Google Sheets Error: ' . $e->getMessage());
+        }
+
+        // 5. Redirect dengan Pesan Sukses
         return redirect()->route('registration.success');
     }
 
