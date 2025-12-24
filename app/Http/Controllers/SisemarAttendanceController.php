@@ -38,7 +38,6 @@ class SisemarAttendanceController extends Controller
         // Catat absensi
         $sisemar->update([
             'checked_in_at' => now(),
-            'checked_in_by_user_id' => Auth::id(),
         ]);
 
         return back()->with('success', 'Check-in berhasil! Selamat datang, ' . $sisemar->name);

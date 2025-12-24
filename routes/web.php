@@ -106,6 +106,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Penukaran Tiket Fisik (H-7)
         Route::get('/redemption/scan', [SisemarRedemptionController::class, 'scanPage'])->name('admin.sisemar.redemption.scan');
+        Route::get('/redemption/check', [SisemarRedemptionController::class, 'redirectCheck']);
+        Route::post('/redemption/check', [SisemarRedemptionController::class, 'check'])->name('admin.sisemar.redemption.check');
         Route::post('/redemption/process', [SisemarRedemptionController::class, 'process'])->name('admin.sisemar.redemption.process');
         Route::get('/redemption/success/{id}', [SisemarRedemptionController::class, 'success'])->name('admin.sisemar.redemption.success');
 
