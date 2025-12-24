@@ -1,1 +1,11 @@
 /vendor
+/node_modules
+/.git
+/storage/*.key
+/storage/app
+/storage/framework
+/storage/logs
+.env
+.env.local
+.env.production
+/tests

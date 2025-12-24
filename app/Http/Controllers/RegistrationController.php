@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Revolution\Google\Sheets\Facades\Sheets;
 
 class RegistrationController extends Controller
 {
@@ -61,21 +60,36 @@ class RegistrationController extends Controller
         try {
             $spreadsheetId = config('google.spreadsheet_id');
             if ($spreadsheetId) {
-                Sheets::spreadsheet($spreadsheetId)
-                    ->sheet('Sheet1')
-                    ->append([
-                        [
-                            $registration->created_at->format('Y-m-d H:i:s'),
-                            $registration->name,
-                            $registration->email,
-                            "'" . $registration->phone,
-                            $registration->institution,
-                            $registration->address,
-                            $registration->payment_method,
-                            $registration->payment_url, // URL Bukti Bayar
-                            'pending'
-                        ]
-                    ]);
+                $credentials = config('google.service.file');
+
+                // If creds is a file path, load it. If array (from env), use it directly.
+                if (is_string($credentials) && file_exists($credentials)) {
+                    $credentials = json_decode(file_get_contents($credentials), true);
+                }
+
+                if (is_array($credentials)) {
+                    $token = $this->getAccessToken($credentials);
+
+                    if ($token) {
+                        $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/Sheet1!A1:append?valueInputOption=USER_ENTERED";
+
+                        \Illuminate\Support\Facades\Http::withToken($token)->post($url, [
+                            'values' => [
+                                [
+                                    $registration->created_at->format('Y-m-d H:i:s'),
+                                    $registration->name,
+                                    $registration->email,
+                                    "'" . $registration->phone,
+                                    $registration->institution,
+                                    $registration->address,
+                                    $registration->payment_method,
+                                    $registration->payment_url,
+                                    'pending'
+                                ]
+                            ]
+                        ]);
+                    }
+                }
             }
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Google Sheets Error: ' . $e->getMessage());
@@ -83,6 +97,28 @@ class RegistrationController extends Controller
 
         // 5. Redirect dengan Pesan Sukses
         return redirect()->route('registration.success');
+    }
+
+    private function getAccessToken($credentials)
+    {
+        $now = time();
+        $payload = [
+            'iss' => $credentials['client_email'],
+            'sub' => $credentials['client_email'],
+            'aud' => 'https://oauth2.googleapis.com/token',
+            'iat' => $now,
+            'exp' => $now + 3600,
+            'scope' => 'https://www.googleapis.com/auth/spreadsheets'
+        ];
+
+        $jwt = \Firebase\JWT\JWT::encode($payload, $credentials['private_key'], 'RS256');
+
+        $response = \Illuminate\Support\Facades\Http::asForm()->post('https://oauth2.googleapis.com/token', [
+            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+            'assertion' => $jwt
+        ]);
+
+        return $response->json()['access_token'] ?? null;
     }
 
     /**
