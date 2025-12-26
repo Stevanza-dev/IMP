@@ -38,7 +38,7 @@
             </div>
 
             <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border-t-4 border-emerald-600 mb-8">
-                <form action="{{ route('ticket.check') }}" method="GET" class="space-y-4">
+                <form action="{{ route('ampera.ticket.check') }}" method="GET" class="space-y-4">
                     <div>
                         <label for="search" class="block text-sm font-semibold text-gray-700 mb-2">Cari Peserta</label>
                         <div class="flex gap-2">
