@@ -12,6 +12,10 @@
             "dest": "/public/$1/$2"
         },
         {
+            "src": "/webhook/(.*)",
+            "dest":"/api/index.php"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
