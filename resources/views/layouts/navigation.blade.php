@@ -54,6 +54,10 @@
                             :active="request()->routeIs('admin.sisemar.redemption.scan')">
                             {{ __('Penukaran') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.sisemar.redemption.status')"
+                            :active="request()->routeIs('admin.sisemar.redemption.status')">
+                            {{ __('Status Penukaran') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('admin.sisemar.attendance.scan')"
                             :active="request()->routeIs('admin.sisemar.attendance.scan')">
                             {{ __('Absen Hari H') }}
@@ -163,6 +167,10 @@
                 <x-responsive-nav-link :href="route('admin.sisemar.redemption.scan')"
                     :active="request()->routeIs('admin.sisemar.redemption.scan')">
                     {{ __('Penukaran') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.sisemar.redemption.status')"
+                    :active="request()->routeIs('admin.sisemar.redemption.status')">
+                    {{ __('Status Penukaran') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.sisemar.attendance.scan')"
                     :active="request()->routeIs('admin.sisemar.attendance.scan')">

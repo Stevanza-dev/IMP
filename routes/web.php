@@ -110,6 +110,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/redemption/check', [SisemarRedemptionController::class, 'check'])->name('admin.sisemar.redemption.check');
         Route::post('/redemption/process', [SisemarRedemptionController::class, 'process'])->name('admin.sisemar.redemption.process');
         Route::get('/redemption/success/{id}', [SisemarRedemptionController::class, 'success'])->name('admin.sisemar.redemption.success');
+        Route::get('/redemption/status', [SisemarRedemptionController::class, 'status'])->name('admin.sisemar.redemption.status');
 
         // Absensi Hari H
         Route::get('/attendance/scan', [SisemarAttendanceController::class, 'scanPage'])->name('admin.sisemar.attendance.scan');

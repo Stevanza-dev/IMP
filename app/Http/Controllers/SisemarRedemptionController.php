@@ -63,4 +63,33 @@ class SisemarRedemptionController extends Controller
         $sisemar = Sisemar::findOrFail($id);
         return view('admin.sisemar.redemption.success', compact('sisemar'));
     }
+
+    // Halaman Status Penukaran Tiket
+    public function status()
+    {
+        // Statistik
+        $stats = [
+            'total_confirmed' => Sisemar::where('status', 'confirmed')->count(),
+            'redeemed' => Sisemar::whereNotNull('ticket_redeemed_at')->count(),
+            'pending_redemption' => Sisemar::where('status', 'confirmed')
+                ->whereNotNull('e_ticket_code')
+                ->whereNull('ticket_redeemed_at')
+                ->count(),
+        ];
+
+        // Hitung persentase
+        if ($stats['total_confirmed'] > 0) {
+            $stats['redeemed_percentage'] = round(($stats['redeemed'] / $stats['total_confirmed']) * 100, 2);
+        } else {
+            $stats['redeemed_percentage'] = 0;
+        }
+
+        // Data Peserta
+        $participants = Sisemar::where('status', 'confirmed')
+            ->orderBy('ticket_redeemed_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.sisemar.redemption.status', compact('stats', 'participants'));
+    }
 }

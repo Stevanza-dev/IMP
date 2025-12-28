@@ -50,12 +50,22 @@ class SisemarAttendanceController extends Controller
             'total' => Sisemar::where('status', 'confirmed')->count(),
             'redeemed' => Sisemar::whereNotNull('ticket_redeemed_at')->count(),
             'checked_in' => Sisemar::whereNotNull('checked_in_at')->count(),
+            'not_checked_in' => Sisemar::whereNotNull('ticket_redeemed_at')
+                ->whereNull('checked_in_at')
+                ->count(),
         ];
 
+        // Peserta yang sudah hadir
         $attendees = Sisemar::whereNotNull('checked_in_at')
             ->latest('checked_in_at')
             ->get();
 
-        return view('admin.sisemar.attendance.recap', compact('stats', 'attendees'));
+        // Peserta yang punya tiket fisik tapi belum hadir
+        $notCheckedIn = Sisemar::whereNotNull('ticket_redeemed_at')
+            ->whereNull('checked_in_at')
+            ->orderBy('name', 'asc')
+            ->get();
+
+        return view('admin.sisemar.attendance.recap', compact('stats', 'attendees', 'notCheckedIn'));
     }
 }
