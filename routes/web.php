@@ -12,6 +12,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\WorkProgramController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\SisemarAdminController;
 use App\Http\Controllers\SisemarRedemptionController;
 use App\Http\Controllers\SisemarAttendanceController;
@@ -122,8 +123,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 4. GROUP SUPER ADMIN (Manajemen User/Role)
     // -----------------------------------------------------------
     Route::middleware(['role:super-admin'])->group(function () {
-        // Nanti kita buat fitur tambah user disini
-        // Route::resource('/admin/users', UserController::class);
+        Route::resource('/admin/role', RoleController::class);
     });
 
 });

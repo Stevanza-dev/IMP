@@ -46,6 +46,12 @@
                         </x-nav-link>
                     @endcan
 
+                    @role('super-admin')
+                        <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
+                            {{ __('Role Management') }}
+                        </x-nav-link>
+                    @endrole
+
                     @can('manage sisemar')
                         <x-nav-link :href="route('admin.sisemar.index')" :active="request()->routeIs('admin.sisemar.*')">
                             {{ __('Home Si Semar') }}
@@ -159,6 +165,12 @@
                     {{ __('Sosmed') }}
                 </x-responsive-nav-link>
             @endcan
+
+            @role('super-admin')
+                <x-responsive-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
+                    {{ __('Role Management') }}
+                </x-responsive-nav-link>
+            @endrole
 
             @can('manage sisemar')
                 <x-responsive-nav-link :href="route('admin.sisemar.index')" :active="request()->routeIs('admin.sisemar.*')">
