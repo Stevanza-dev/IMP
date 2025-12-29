@@ -48,7 +48,10 @@
 
                     @role('super-admin')
                         <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
-                            {{ __('Role Management') }}
+                            {{ __('Role Manage') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            {{ __('User Manage') }}
                         </x-nav-link>
                     @endrole
 
@@ -168,7 +171,10 @@
 
             @role('super-admin')
                 <x-responsive-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
-                    {{ __('Role Management') }}
+                    {{ __('Role Manage') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                    {{ __('User Manage') }}
                 </x-responsive-nav-link>
             @endrole
 
