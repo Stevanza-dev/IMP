@@ -29,11 +29,7 @@ return new class extends Migration
 
             // Status & Tiket Digital
             $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
-            $table->string('e_ticket_code')->unique()->nullable(); // Barcode digital (digenerate saat ACC)
-
-            // Penukaran Tiket Fisik Hari-Hari-H
-            $table->string('physical_ticket_code')->unique()->nullable(); // Barcode fisik
-            $table->timestamp('ticket_redeemed_at')->nullable(); // waktu penukaran
+            $table->string('e_ticket_code')->unique()->nullable(); // Untuk Absen
             
             // Absensi Hari H
             $table->timestamp('checked_in_at')->nullable(); // waktu scan masuk event

@@ -25,14 +25,14 @@
                     <div class="text-green-600 text-sm font-bold">SUDAH HADIR</div>
                     <div class="text-3xl font-bold text-green-700">{{ $stats['checked_in'] }}</div>
                     <div class="text-xs text-gray-400 mt-1">
-                        {{ $stats['redeemed'] > 0 ? round(($stats['checked_in'] / $stats['redeemed']) * 100) : 0 }}% dari yang punya tiket
+                        {{ $stats['total'] > 0 ? round(($stats['checked_in'] / $stats['total']) * 100) : 0 }}% dari total peserta
                     </div>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 border-yellow-500">
                     <div class="text-yellow-600 text-sm font-bold">BELUM HADIR</div>
                     <div class="text-3xl font-bold text-yellow-700">{{ $stats['not_checked_in'] }}</div>
-                    <div class="text-xs text-gray-400 mt-1">Punya tiket tapi belum datang</div>
+                    <div class="text-xs text-gray-400 mt-1">Sudah terkonfirmasi</div>
                 </div>
             </div>
 
@@ -54,10 +54,6 @@
                                         <div class="text-xs text-green-600">✅ HADIR</div>
                                     </div>
                                 </div>
-
-                                <div class="mt-3 flex items-center justify-between">
-                                    <div class="text-xs text-gray-600 font-mono">{{ $person->physical_ticket_code }}</div>
-                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -69,7 +65,7 @@
                                 <tr>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Waktu Masuk</th>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Nama Peserta</th>
-                                    <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Kode Tiket Fisik</th>
+                                    <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">E-Ticket Code</th>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Status</th>
                                 </tr>
                             </thead>
@@ -88,7 +84,7 @@
                                         </td>
 
                                         <td class="px-6 py-4 font-mono text-gray-600">
-                                            {{ $person->physical_ticket_code }}
+                                            {{ $person->e_ticket_code }}
                                         </td>
 
                                         <td class="px-6 py-4">
@@ -131,10 +127,6 @@
                                         <div class="text-xs text-yellow-600 font-semibold">⏳ BELUM HADIR</div>
                                     </div>
                                 </div>
-
-                                <div class="mt-3 flex items-center justify-between">
-                                    <div class="text-xs text-gray-600 font-mono">{{ $person->physical_ticket_code }}</div>
-                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -147,7 +139,7 @@
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">No</th>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Nama Peserta</th>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Asal Sekolah</th>
-                                    <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Kode Tiket Fisik</th>
+                                    <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">E-Ticket Code</th>
                                     <th class="px-6 py-3 text-left font-medium text-gray-500 uppercase">Status</th>
                                 </tr>
                             </thead>
@@ -168,7 +160,7 @@
                                         </td>
 
                                         <td class="px-6 py-4 font-mono text-gray-700">
-                                            {{ $person->physical_ticket_code }}
+                                            {{ $person->e_ticket_code }}
                                         </td>
 
                                         <td class="px-6 py-4">
@@ -184,7 +176,7 @@
 
                     @if($notCheckedIn->isEmpty())
                         <div class="text-center py-10 text-gray-500">
-                            🎉 Semua peserta yang sudah punya tiket fisik telah hadir!
+                            🎉 Semua peserta terkonfirmasi telah hadir!
                         </div>
                     @endif
 

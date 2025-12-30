@@ -4,31 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Sisemar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class SisemarAttendanceController extends Controller
 {
-    // Halaman Scan Tiket Fisik
+    // Halaman Scan E-Ticket (Barcode Digital dari Email)
     public function scanPage()
     {
         return view('admin.sisemar.attendance.scan');
     }
 
-    // Proses Scan Tiket Fisik (Hari H)
+    // Proses Check-In via E-Ticket Code
     public function checkIn(Request $request)
     {
         $request->validate([
-            'physical_ticket_code' => 'required|string',
+            'e_ticket_code' => 'required|string',
         ]);
 
-        $sisemar = Sisemar::where('physical_ticket_code', strtoupper($request->physical_ticket_code))->first();
+        $sisemar = Sisemar::where('e_ticket_code', strtoupper($request->e_ticket_code))->first();
 
         if (!$sisemar) {
-            return back()->with('error', 'Tiket fisik tidak ditemukan!');
+            return back()->with('error', 'E-Ticket tidak ditemukan! Pastikan peserta sudah terkonfirmasi.');
         }
 
-        if (!$sisemar->hasRedeemedTicket()) {
-            return back()->with('error', 'Tiket fisik belum ditukar! Arahkan peserta ke booth penukaran.');
+        if (!$sisemar->isConfirmed()) {
+            return back()->with('error', 'Pendaftaran belum disetujui. Status: ' . $sisemar->status);
         }
 
         if ($sisemar->hasCheckedIn()) {
@@ -48,9 +47,8 @@ class SisemarAttendanceController extends Controller
     {
         $stats = [
             'total' => Sisemar::where('status', 'confirmed')->count(),
-            'redeemed' => Sisemar::whereNotNull('ticket_redeemed_at')->count(),
             'checked_in' => Sisemar::whereNotNull('checked_in_at')->count(),
-            'not_checked_in' => Sisemar::whereNotNull('ticket_redeemed_at')
+            'not_checked_in' => Sisemar::where('status', 'confirmed')
                 ->whereNull('checked_in_at')
                 ->count(),
         ];
@@ -60,8 +58,8 @@ class SisemarAttendanceController extends Controller
             ->latest('checked_in_at')
             ->get();
 
-        // Peserta yang punya tiket fisik tapi belum hadir
-        $notCheckedIn = Sisemar::whereNotNull('ticket_redeemed_at')
+        // Peserta terkonfirmasi tapi belum hadir
+        $notCheckedIn = Sisemar::where('status', 'confirmed')
             ->whereNull('checked_in_at')
             ->orderBy('name', 'asc')
             ->get();

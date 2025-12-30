@@ -15,7 +15,6 @@ use App\Http\Controllers\Admin\WorkProgramController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\SisemarAdminController;
-use App\Http\Controllers\SisemarRedemptionController;
 use App\Http\Controllers\SisemarAttendanceController;
 
 // Public Routes
@@ -101,20 +100,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 3. GROUP SI SEMAR
     // -----------------------------------------------------------
     Route::middleware(['permission:manage sisemar'])->prefix('admin/sisemar')->group(function () {
-        // Dashboard & Approval
+        // Dashboard (menggunakan Livewire)
         Route::get('/', [SisemarAdminController::class, 'index'])->name('admin.sisemar.index');
-        Route::post('/{id}/approve', [SisemarAdminController::class, 'approve'])->name('admin.sisemar.approve');
-        Route::post('/{id}/reject', [SisemarAdminController::class, 'reject'])->name('admin.sisemar.reject');
 
-        // Penukaran Tiket Fisik (H-7)
-        Route::get('/redemption/scan', [SisemarRedemptionController::class, 'scanPage'])->name('admin.sisemar.redemption.scan');
-        Route::get('/redemption/check', [SisemarRedemptionController::class, 'redirectCheck']);
-        Route::post('/redemption/check', [SisemarRedemptionController::class, 'check'])->name('admin.sisemar.redemption.check');
-        Route::post('/redemption/process', [SisemarRedemptionController::class, 'process'])->name('admin.sisemar.redemption.process');
-        Route::get('/redemption/success/{id}', [SisemarRedemptionController::class, 'success'])->name('admin.sisemar.redemption.success');
-        Route::get('/redemption/status', [SisemarRedemptionController::class, 'status'])->name('admin.sisemar.redemption.status');
-
-        // Absensi Hari H
+        // Absensi Hari H (Langsung scan E-Ticket dari email)
         Route::get('/attendance/scan', [SisemarAttendanceController::class, 'scanPage'])->name('admin.sisemar.attendance.scan');
         Route::post('/attendance/check-in', [SisemarAttendanceController::class, 'checkIn'])->name('admin.sisemar.attendance.checkin');
         Route::get('/attendance/recap', [SisemarAttendanceController::class, 'recap'])->name('admin.sisemar.attendance.recap');

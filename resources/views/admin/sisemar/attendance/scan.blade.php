@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Scan Masuk Event (Gate)') }}
+            {{ __('Scan E-Ticket Peserta SI SEMAR') }}
         </h2>
     </x-slot>
 
@@ -34,13 +34,13 @@
                         <div id="reader" width="600px"
                             class="bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 mx-auto max-w-sm">
                         </div>
-                        <p class="text-sm text-gray-500 mt-2">Arahkan scanner ke Barcode Tiket Fisik.</p>
+                        <p class="text-sm text-gray-500 mt-2">Arahkan scanner ke Barcode E-Ticket (dari email).</p>
                     </div>
 
                     <form id="scan-form" action="{{ route('admin.sisemar.attendance.checkin') }}" method="POST"
                         class="hidden">
                         @csrf
-                        <input type="text" name="physical_ticket_code" id="physical_ticket_code">
+                        <input type="text" name="e_ticket_code" id="e_ticket_code">
                     </form>
 
                 </div>
@@ -58,7 +58,7 @@
             beepSound.play();
 
             // Isi input dan submit
-            document.getElementById('physical_ticket_code').value = decodedText;
+            document.getElementById('e_ticket_code').value = decodedText;
 
             // Stop scanner agar tidak submit double
             html5QrcodeScanner.clear();

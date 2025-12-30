@@ -21,13 +21,10 @@ class Sisemar extends Model
         'payment_status',
         'status',
         'e_ticket_code',
-        'physical_ticket_code',
-        'ticket_redeemed_at',
         'checked_in_at',
     ];
 
     protected $casts = [
-        'ticket_redeemed_at' => 'datetime',
         'checked_in_at' => 'datetime',
     ];
 
@@ -42,13 +39,13 @@ class Sisemar extends Model
         return $this->status === 'confirmed';
     }
 
-    public function hasRedeemedTicket(): bool
-    {
-        return !is_null($this->ticket_redeemed_at);
-    }
-
     public function hasCheckedIn(): bool
     {
         return !is_null($this->checked_in_at);
+    }
+
+    public function hasETicket(): bool
+    {
+        return !is_null($this->e_ticket_code);
     }
 }
