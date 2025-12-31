@@ -14,6 +14,60 @@
         </div>
     @endif
 
+    {{-- Statistik & Filter --}}
+    <div class="mb-6 space-y-4">
+        {{-- Statistik kartu --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 bg-white border rounded-lg shadow-sm">
+                <p class="text-xs font-semibold text-gray-500 uppercase">Semua Peserta</p>
+                <p class="mt-1 text-2xl font-bold text-gray-900">{{ $totalAll ?? 0 }}</p>
+            </div>
+
+            <div class="p-4 bg-green-50 border border-green-200 rounded-lg shadow-sm">
+                <p class="text-xs font-semibold text-green-700 uppercase">Sudah ACC</p>
+                <p class="mt-1 text-2xl font-bold text-green-700">{{ $totalApproved ?? 0 }}</p>
+            </div>
+
+            <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm">
+                <p class="text-xs font-semibold text-yellow-700 uppercase">Belum ACC</p>
+                <p class="mt-1 text-2xl font-bold text-yellow-700">{{ $totalPending ?? 0 }}</p>
+            </div>
+        </div>
+
+        {{-- Filter status & search nama --}}
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button
+                    type="button"
+                    wire:click="$set('statusFilter','all')"
+                    class="px-4 py-2 text-xs font-medium border rounded-l-md focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 {{ $statusFilter === 'all' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50' }}">
+                    Semua
+                </button>
+                <button
+                    type="button"
+                    wire:click="$set('statusFilter','confirmed')"
+                    class="px-4 py-2 text-xs font-medium border-t border-b focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 {{ $statusFilter === 'confirmed' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50' }}">
+                    Sudah ACC
+                </button>
+                <button
+                    type="button"
+                    wire:click="$set('statusFilter','pending')"
+                    class="px-4 py-2 text-xs font-medium border rounded-r-md focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 {{ $statusFilter === 'pending' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50' }}">
+                    Belum ACC
+                </button>
+            </div>
+
+            <div class="w-full md:w-64">
+                <input
+                    type="text"
+                    wire:model.live.debounce.300ms="search"
+                    placeholder="Cari nama peserta..."
+                    class="block w-full rounded-md border-gray-300 shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                >
+            </div>
+        </div>
+    </div>
+
     {{-- Mobile: stacked cards --}}
     <div class="md:hidden space-y-4">
         @foreach ($sisemars as $sisemar)

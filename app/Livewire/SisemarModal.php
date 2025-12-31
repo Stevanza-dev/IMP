@@ -18,6 +18,9 @@ class SisemarModal extends Component
     public $showPaymentModal = false;
     public $selectedSisemar = null;
 
+    public $search = '';
+    public $statusFilter = 'all'; // all, confirmed, pending
+
     protected $listeners = ['refreshSisemars' => '$refresh'];
 
     // Approve Modal
@@ -119,10 +122,41 @@ class SisemarModal extends Component
         $this->resetPage();
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingStatusFilter()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
+        $query = Sisemar::query()->latest();
+
+        if ($this->search) {
+            $query->where('name', 'like', '%'.$this->search.'%');
+        }
+
+        if ($this->statusFilter === 'confirmed') {
+            $query->where('status', 'confirmed');
+        } elseif ($this->statusFilter === 'pending') {
+            $query->where('status', 'pending');
+        }
+
+        $sisemars = $query->paginate(20);
+
+        $totalAll = Sisemar::count();
+        $totalApproved = Sisemar::where('status', 'confirmed')->count();
+        $totalPending = Sisemar::where('status', 'pending')->count();
+
         return view('livewire.sisemar-modal', [
-            'sisemars' => Sisemar::latest()->paginate(20),
+            'sisemars' => $sisemars,
+            'totalAll' => $totalAll,
+            'totalApproved' => $totalApproved,
+            'totalPending' => $totalPending,
         ]);
     }
 }

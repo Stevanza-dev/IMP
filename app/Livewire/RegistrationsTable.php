@@ -13,7 +13,8 @@ class RegistrationsTable extends Component
     public $search = '';
     public $filter = '';
 
-    protected $queryString = ['search', 'filter', 'page'];
+    // Simpan hanya search & filter di query string.
+    protected $queryString = ['search', 'filter'];
 
     public function updatingSearch()
     {

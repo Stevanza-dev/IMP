@@ -63,9 +63,9 @@
                         class="inline-block w-full py-3 px-6 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition transform hover:scale-105 shadow-md">
                         <i class="fab fa-whatsapp mr-2"></i> Annas
                     </a>
-                    <a href="https://wa.me/6289520522580" target="_blank"
+                    <a href="https://wa.me/6285729922581" target="_blank"
                         class="inline-block w-full py-3 px-6 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition transform hover:scale-105 shadow-md">
-                        <i class="fab fa-whatsapp mr-2"></i> Elena
+                        <i class="fab fa-whatsapp mr-2"></i> Uta
                     </a>
                 </div>
 
