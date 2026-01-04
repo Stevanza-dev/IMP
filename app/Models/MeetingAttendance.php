@@ -12,7 +12,9 @@ class MeetingAttendance extends Model
         'check_in_at',
         'distance_in_meters',
         'status',
-        'notes'
+        'notes',
+        'photo_public_id',
+        'photo_url',
     ];
 
     // Relasi balik ke Member (agar kita tahu ini absennya siapa)

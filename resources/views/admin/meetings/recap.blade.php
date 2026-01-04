@@ -72,8 +72,22 @@
                                         <td class="px-4 py-3">
                                             <p class="font-bold text-gray-800">{{ $data->member->name }}</p>
                                             <p class="text-xs text-gray-500">{{ $data->member->division }}</p>
-                                            <p class="text-[10px] text-gray-400">Jarak:
-                                                {{ round($data->distance_in_meters) }}m</p>
+                                            @if(in_array($data->status, ['present_location', 'present']) && !is_null($data->distance_in_meters))
+                                                <p class="text-[10px] text-gray-400">Jarak:
+                                                    {{ round($data->distance_in_meters) }}m (Hadir Lokasi)</p>
+                                            @endif
+
+                                            @if($data->status === 'present_photo' && $data->photo_url)
+                                                <div class="mt-1 flex items-center gap-2">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                                                        Hadir (Foto)
+                                                    </span>
+                                                    <a href="{{ $data->photo_url }}" target="_blank" class="block">
+                                                        <img src="{{ $data->photo_url }}" alt="Foto Kehadiran"
+                                                            class="w-16 h-16 object-cover rounded border border-gray-200 shadow-sm">
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </td>
                                         <td class="px-4 py-3 font-mono text-green-700">
                                             {{ \Carbon\Carbon::parse($data->check_in_at)->format('H:i') }}

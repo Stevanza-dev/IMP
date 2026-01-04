@@ -51,7 +51,7 @@
                 @endif
 
                 <form action="{{ route('registration.store') }}" method="POST" enctype="multipart/form-data"
-                    class="space-y-6">
+                    class="space-y-6" id="registrationForm">
                     @csrf <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" required
@@ -168,9 +168,10 @@
                     </div>
 
                     <div class="pt-6">
-                        <button type="submit"
+                        <button type="submit" id="btn-register-submit"
                             class="w-full flex justify-center items-center py-3 px-4 rounded-lg shadow-lg text-base font-bold text-white bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition transform hover:scale-105">
-                            <i class="fas fa-check-circle mr-2"></i> DAFTAR SEKARANG
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>DAFTAR SEKARANG</span>
                         </button>
                     </div>
                 </form>
@@ -187,6 +188,9 @@
             shopeepay: { label: 'ShopeePay', number: '087892748569', name: 'Sofya' },
             qris: { label: 'QRIS', number: 'QRIS Code', name: '' }
         };
+
+        const registrationForm = document.getElementById('registrationForm');
+        const btnRegisterSubmit = document.getElementById('btn-register-submit');
 
         function updatePaymentInfo() {
             const method = document.getElementById('payment_method').value;
@@ -226,6 +230,20 @@
             } else {
                 fileSelectedDiv.classList.add('hidden');
             }
+        }
+
+        // Saat user menekan tombol "DAFTAR SEKARANG", tampilkan indikator proses
+        if (registrationForm && btnRegisterSubmit) {
+            registrationForm.addEventListener('submit', function () {
+                btnRegisterSubmit.disabled = true;
+                btnRegisterSubmit.classList.remove('hover:from-emerald-700', 'hover:to-green-700', 'hover:scale-105');
+                btnRegisterSubmit.classList.add('cursor-wait', 'opacity-80');
+
+                const span = btnRegisterSubmit.querySelector('span');
+                if (span) {
+                    span.textContent = 'Memproses pendaftaran, mohon tunggu...';
+                }
+            });
         }
     </script>
 

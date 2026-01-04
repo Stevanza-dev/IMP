@@ -36,7 +36,7 @@
             @endif
 
             @if(!session('success'))
-                <form action="{{ route('attendance.store', $meeting->token) }}" method="POST" id="absenForm">
+                <form action="{{ route('attendance.store', $meeting->token) }}" method="POST" id="absenForm" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-4">
@@ -62,11 +62,16 @@
 
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Status Kehadiran</label>
-                        <div class="flex gap-4">
+                        <div class="flex flex-col gap-2">
                             <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="status" value="present" checked
-                                    class="w-5 h-5 text-blue-600 focus:ring-blue-500" onclick="toggleStatus('present')">
-                                <span class="text-gray-700 font-medium">Hadir</span>
+                                <input type="radio" name="status" value="present_location" checked
+                                    class="w-5 h-5 text-blue-600 focus:ring-blue-500" onclick="toggleStatus('present_location')">
+                                <span class="text-gray-700 font-medium">Hadir (Lokasi)</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="status" value="present_photo"
+                                    class="w-5 h-5 text-blue-600 focus:ring-blue-500" onclick="toggleStatus('present_photo')">
+                                <span class="text-gray-700 font-medium">Hadir (Foto)</span>
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="status" value="permission"
@@ -74,6 +79,16 @@
                                 <span class="text-gray-700 font-medium">Izin / Sakit</span>
                             </label>
                         </div>
+                    </div>
+
+                    <div class="mb-4 hidden" id="photo-container">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Foto</label>
+                        <input type="file" name="photo" id="photo_input" accept="image/*"
+                            class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                        <p class="text-xs text-gray-500 mt-1">Jika memilih "Hadir (Foto)", harap unggah foto sebagai bukti.</p>
+                        @error('photo')
+                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div id="notes-container" class="mb-4 hidden">
@@ -121,29 +136,57 @@
         const latInput = document.getElementById('lat');
         const lngInput = document.getElementById('lng');
         const btnSubmit = document.getElementById('btn-submit');
+        const absenForm = document.getElementById('absenForm');
         const notesContainer = document.getElementById('notes-container');
         const notesInput = document.getElementById('notes');
         const locationContainer = document.getElementById('location-container');
+        const photoInput = document.getElementById('photo_input');
+        const photoContainer = document.getElementById('photo-container');
 
         let isLocationFound = false;
 
         function toggleStatus(status) {
-            if (status === 'present') {
-                // Mode Hadir: Wajib Lokasi
+            if (status === 'present_location') {
+                // Hadir dengan lokasi: wajib lokasi, foto disembunyikan
                 notesContainer.classList.add('hidden');
                 notesInput.required = false;
 
                 locationContainer.classList.remove('hidden');
 
+                photoContainer.classList.add('hidden');
+                photoInput.required = false;
+
+                // optional: kosongkan foto jika sebelumnya terisi
+                if (photoInput.value) {
+                    photoInput.value = '';
+                }
+
+                checkSubmitButton();
+            } else if (status === 'present_photo') {
+                // Hadir dengan foto: wajib foto, lokasi tidak digunakan
+                notesContainer.classList.add('hidden');
+                notesInput.required = false;
+
+                locationContainer.classList.add('hidden');
+
+                photoContainer.classList.remove('hidden');
+                photoInput.required = true;
+
                 checkSubmitButton();
             } else {
-                // Mode Izin: Skip Lokasi, Wajib Alasan
+                // Izin: wajib alasan, tidak pakai lokasi / foto
                 notesContainer.classList.remove('hidden');
                 notesInput.required = true;
 
                 locationContainer.classList.add('hidden');
 
-                // Selalu enable submit jika izin (asalkan nama dipilih)
+                photoContainer.classList.add('hidden');
+                photoInput.required = false;
+
+                if (photoInput.value) {
+                    photoInput.value = '';
+                }
+
                 checkSubmitButton();
             }
         }
@@ -151,16 +194,51 @@
         function checkSubmitButton() {
             const status = document.querySelector('input[name="status"]:checked').value;
 
-            if (status === 'present') {
+            if (status === 'present_location') {
+                // Hadir lokasi: butuh lokasi berhasil
                 if (isLocationFound) {
                     enableButton();
                 } else {
                     disableButton();
                 }
+            } else if (status === 'present_photo') {
+                // Hadir foto: butuh file foto dipilih
+                if (photoInput.files && photoInput.files.length > 0) {
+                    enableButton();
+                } else {
+                    disableButton();
+                }
             } else {
-                // Izin -> Enable button directly (validation handled by HTML 'required' on notes/member select)
+                // Izin -> Enable button langsung (validasi di HTML)
                 enableButton();
             }
+        }
+
+        // Jika user memilih / mengganti foto saat status "Hadir (Foto)" aktif,
+        // cek ulang apakah tombol submit boleh diaktifkan.
+        if (photoInput) {
+            photoInput.addEventListener('change', function () {
+                checkSubmitButton();
+            });
+        }
+
+        // 3. Tampilkan indikator proses saat form dikirim
+        if (absenForm) {
+            absenForm.addEventListener('submit', function () {
+                const status = document.querySelector('input[name="status"]:checked').value;
+
+                btnSubmit.disabled = true;
+                btnSubmit.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                btnSubmit.classList.add('bg-gray-400', 'cursor-wait');
+
+                if (status === 'present_photo') {
+                    btnSubmit.textContent = 'Mengunggah & memproses foto, mohon tunggu...';
+                } else if (status === 'present_location') {
+                    btnSubmit.textContent = 'Mengirim absensi (lokasi), mohon tunggu...';
+                } else {
+                    btnSubmit.textContent = 'Mengirim data izin, mohon tunggu...';
+                }
+            });
         }
 
         function enableButton() {

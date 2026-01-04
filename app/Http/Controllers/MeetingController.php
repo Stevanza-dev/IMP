@@ -60,8 +60,10 @@ class MeetingController extends Controller
 
         $attendances = $meeting->attendances()->with('member')->get();
 
-        // 1. Ambil List Member yang HADIR (Status = present)
-        $presentMembers = $attendances->where('status', 'present')->sortBy('check_in_at');
+        // 1. Ambil List Member yang HADIR (Status hadir lokasi / foto / legacy present)
+        $presentMembers = $attendances
+            ->whereIn('status', ['present', 'present_location', 'present_photo'])
+            ->sortBy('check_in_at');
 
         // 2. Ambil List Member yang IZIN (Status = permission)
         $permissionMembers = $attendances->where('status', 'permission')->sortBy('check_in_at');

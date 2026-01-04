@@ -6,6 +6,7 @@ use App\Models\Meeting;
 use App\Models\Member;
 use App\Models\MeetingAttendance;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AttendanceController extends Controller
 {
@@ -17,8 +18,16 @@ class AttendanceController extends Controller
         // Cari rapat berdasarkan token
         $meeting = Meeting::where('token', $token)->where('is_active', true)->firstOrFail();
 
-        // Ambil data semua panitia untuk dropdown
-        $members = Member::orderBy('name', 'asc')->get();
+        // Ambil hanya panitia yang BELUM melakukan absensi untuk rapat ini
+        $attendedMemberIds = MeetingAttendance::where('meeting_id', $meeting->id)
+            ->pluck('member_id')
+            ->toArray();
+
+        $members = Member::when(!empty($attendedMemberIds), function ($query) use ($attendedMemberIds) {
+                return $query->whereNotIn('id', $attendedMemberIds);
+            })
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('attendance.form', compact('meeting', 'members'));
     }
@@ -32,10 +41,11 @@ class AttendanceController extends Controller
 
         $request->validate([
             'member_id' => 'required|exists:members,id',
-            'status' => 'required|in:present,permission',
-            'latitude' => 'required_if:status,present|nullable|numeric',
-            'longitude' => 'required_if:status,present|nullable|numeric',
+            'status' => 'required|in:present_location,present_photo,permission',
+            'latitude' => 'required_if:status,present_location|nullable|numeric',
+            'longitude' => 'required_if:status,present_location|nullable|numeric',
             'notes' => 'required_if:status,permission|nullable|string',
+            'photo' => 'required_if:status,present_photo|nullable|image|mimes:jpeg,jpg,png',
         ]);
 
         // Cek apakah sudah pernah absen?
@@ -47,10 +57,34 @@ class AttendanceController extends Controller
             return back()->with('error', 'Anda sudah melakukan absensi sebelumnya.');
         }
 
+        // 3. Upload Foto (Opsional) ke Cloudinary dengan kompresi otomatis
+        $photoPublicId = null;
+        $photoUrl = null;
+
+        if ($request->hasFile('photo')) {
+            $uploadedFile = $request->file('photo');
+            $path = $uploadedFile->getPathname();
+
+            $uploadResult = Cloudinary::uploadApi()->upload($path, [
+                'folder' => 'AbsensiRapat',
+                'resource_type' => 'image',
+                // Kompresi & optimasi otomatis (setara q_auto, f_auto, w_1000)
+                'transformation' => [[
+                    'width' => 1000,
+                    'crop' => 'scale',
+                    'quality' => 'auto',
+                    'fetch_format' => 'auto',
+                ]],
+            ]);
+
+            $photoPublicId = $uploadResult['public_id'] ?? null;
+            $photoUrl = $uploadResult['secure_url'] ?? null;
+        }
+
         $distance = null;
 
-        // Cek Lokasi HANYA JIKA Status = Hadir
-        if ($request->status === 'present') {
+        // Cek Lokasi HANYA JIKA Status = Hadir (Lokasi)
+        if ($request->status === 'present_location') {
             // --- HITUNG JARAK (Haversine Formula) ---
             $distance = $this->calculateDistance(
                 $meeting->latitude,
@@ -60,7 +94,7 @@ class AttendanceController extends Controller
             );
 
             // Batas toleransi jarak (meter)
-            $radiusLimit = 20;
+            $radiusLimit = 500;
 
             if ($distance > $radiusLimit) {
                 return back()->with('error', "GAGAL! Anda berada di luar area rapat. Jarak Anda: " . round($distance) . " meter. Harap mendekat ke lokasi.");
@@ -75,11 +109,13 @@ class AttendanceController extends Controller
             'distance_in_meters' => $distance, // Bisa null jika izin
             'status' => $request->status,
             'notes' => $request->notes,
+            'photo_public_id' => $photoPublicId,
+            'photo_url' => $photoUrl,
         ]);
 
-        $msg = $request->status === 'present'
-            ? 'Absensi Berhasil! Jarak: ' . round($distance) . 'm. Selamat Rapat.'
-            : 'Izin Berhasil Tercatat.';
+        $msg = $request->status === 'permission'
+            ? 'Izin Berhasil Tercatat.'
+            : 'Absensi Berhasil! Selamat Rapat.';
 
         return back()->with('success', $msg);
     }
