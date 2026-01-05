@@ -131,6 +131,33 @@
                 </div>
                 @endrole
 
+                {{-- Untuk Fungsionaris --}}
+                @role('fungsio')
+                <div
+                    class="bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden text-white relative">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-xl font-bold">Data Fungsionaris</h4>
+                                <p class="text-purple-100 text-sm mt-1">Lengkapi data diri kepengurusan IMP</p>
+                            </div>
+                            <div class="bg-white bg-opacity-20 p-3 rounded-lg">
+                                <i class="fas fa-id-card text-2xl"></i>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-purple-50 opacity-90">
+                            Lihat dan lengkapi data fungsio Anda sesuai periode dan divisi yang berlaku.
+                        </p>
+                        <div class="mt-6">
+                            <a href="{{ route('fungsio.profile.edit') }}"
+                                class="inline-block bg-white text-purple-700 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition">
+                                Lihat Data &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endrole
+
             </div>
 
             <!-- Footer Quote or Info -->

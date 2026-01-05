@@ -13,4 +13,14 @@ class WorkProgram extends Model
     {
         return $this->belongsTo(Division::class);
     }
+
+    public function period()
+    {
+        return $this->belongsTo(Period::class);
+    }
+
+    public function comites()
+    {
+        return $this->hasMany(Comite::class);
+    }
 }

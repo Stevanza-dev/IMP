@@ -49,6 +49,10 @@ class RolePermissionSeeder extends Seeder
         // Super admin punya semua permission yang ada
         $roleSuperAdmin->givePermissionTo(Permission::all());
 
+        // E. Fungsio (Anggota Biasa)
+        $roleFungsio = Role::create(['name' => 'fungsio']);
+        $roleFungsio->givePermissionTo(['view dashboard']);
+
         // 4. Buat User Dummy untuk Tes (Opsional)
 
         // User Super Admin

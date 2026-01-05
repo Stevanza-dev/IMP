@@ -14,8 +14,10 @@ use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\WorkProgramController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\SisemarAdminController;
 use App\Http\Controllers\SisemarAttendanceController;
+use App\Http\Controllers\FungsioController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -115,6 +117,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:super-admin'])->group(function () {
         Route::resource('/admin/role', RoleController::class);
         Route::resource('/admin/users', UserController::class);
+        Route::resource('/admin/periods', PeriodController::class);
+    });
+
+    // 5. Fungsionaris
+    Route::middleware(['role:fungsio'])->prefix('fungsio')->name('fungsio.')->group(function () {
+        // Halaman profil fungsio (melihat & melengkapi data diri)
+        Route::get('/profil', [FungsioController::class, 'edit'])->name('profile.edit');
+        Route::put('/profil', [FungsioController::class, 'update'])->name('profile.update');
     });
 
 });

@@ -53,6 +53,15 @@
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                             {{ __('User Manage') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
+                            {{ __('Periode') }}
+                        </x-nav-link>
+                    @endrole
+
+                    @role('fungsio')
+                        <x-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
+                            {{ __('Profil') }}
+                        </x-nav-link>
                     @endrole
 
                     @can('manage sisemar')
@@ -167,6 +176,15 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                     {{ __('User Manage') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
+                    {{ __('Periode') }}
+                </x-responsive-nav-link>
+            @endrole
+
+            @role('fungsio')
+                <x-responsive-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
+                    {{ __('Profil') }}
                 </x-responsive-nav-link>
             @endrole
 
