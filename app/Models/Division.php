@@ -13,4 +13,9 @@ class Division extends Model
     {
         return $this->hasMany(WorkProgram::class);
     }
+
+    public function fungsios()
+    {
+        return $this->hasMany(Fungsio::class);
+    }
 }

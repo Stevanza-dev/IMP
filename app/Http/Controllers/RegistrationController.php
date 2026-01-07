@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Setting;
 
 class RegistrationController extends Controller
 {
@@ -13,7 +14,8 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        return view('registrations.create');
+        $registrationOpen = Setting::get('ampera_registration_open', '1') === '1';
+        return view('registrations.create', compact('registrationOpen'));
     }
 
     /**
@@ -21,6 +23,11 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        // Cek apakah pendaftaran masih dibuka
+        $registrationOpen = Setting::get('ampera_registration_open', '1') === '1';
+        if (!$registrationOpen) {
+            return redirect()->route('registration.create')->with('error', 'Maaf, pendaftaran sudah ditutup.');
+        }
         // 1. Validasi Input
         // Kita pastikan email valid dan gambar bukti bayar sesuai aturan
         $validated = $request->validate([

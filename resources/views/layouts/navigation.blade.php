@@ -62,6 +62,9 @@
                         <x-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
                             {{ __('Profil') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
+                            {{ __('Daftar Fungsionaris') }}
+                        </x-nav-link>
                     @endrole
 
                     @can('manage sisemar')
@@ -185,6 +188,9 @@
             @role('fungsio')
                 <x-responsive-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
                     {{ __('Profil') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
+                    {{ __('Daftar Fungsionaris') }}
                 </x-responsive-nav-link>
             @endrole
 

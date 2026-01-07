@@ -24,6 +24,16 @@ class FungsioController extends Controller
         return view('fungsio.profile', compact('user', 'fungsio', 'divisions', 'periods'));
     }
 
+    public function index()
+    {
+        // Ambil semua divisi beserta fungsionarisnya
+        $divisions = Division::with(['fungsios' => function ($q) {
+            $q->with(['user', 'period'])->orderBy('jabatan');
+        }])->orderBy('name')->get();
+
+        return view('fungsio.list', compact('divisions'));
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();

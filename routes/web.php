@@ -69,6 +69,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Dashboard Khusus Ampera (Diganti URL agar tidak bentrok)
         Route::get('/admin/ampera', [AdminController::class, 'index'])->name('admin.ampera.dashboard');
 
+        // Toggle Open/Close Pendaftaran
+        Route::post('/admin/ampera/toggle-registration', [AdminController::class, 'toggleRegistration'])->name('admin.ampera.toggle');
+
         // Action Buttons (Approve/Reject)
         Route::patch('/registration/{id}/approve', [AdminController::class, 'approve'])->name('admin.approve');
         Route::patch('/registration/{id}/reject', [AdminController::class, 'reject'])->name('admin.reject');
@@ -125,6 +128,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Halaman profil fungsio (melihat & melengkapi data diri)
         Route::get('/profil', [FungsioController::class, 'edit'])->name('profile.edit');
         Route::put('/profil', [FungsioController::class, 'update'])->name('profile.update');
+
+        Route::get('/list', [FungsioController::class, 'index'])->name('list');
     });
 
 });

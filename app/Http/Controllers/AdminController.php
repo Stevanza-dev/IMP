@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\TicketApproved;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Setting;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,21 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.dashboard');
+        $registrationOpen = Setting::get('ampera_registration_open', '1') === '1';
+        return view('admin.dashboard', compact('registrationOpen'));
+    }
+
+    /**
+     * Toggle Open/Close Pendaftaran
+     */
+    public function toggleRegistration()
+    {
+        $current = Setting::get('ampera_registration_open', '1');
+        $newValue = $current === '1' ? '0' : '1';
+        Setting::set('ampera_registration_open', $newValue);
+
+        $status = $newValue === '1' ? 'dibuka' : 'ditutup';
+        return redirect()->back()->with('success', "Pendaftaran AMPERA berhasil {$status}!");
     }
 
     /**

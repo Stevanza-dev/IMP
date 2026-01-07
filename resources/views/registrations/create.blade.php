@@ -50,9 +50,43 @@
                     </div>
                 @endif
 
-                <form action="{{ route('registration.store') }}" method="POST" enctype="multipart/form-data"
-                    class="space-y-6" id="registrationForm">
-                    @csrf <div>
+                @if (session('error'))
+                    <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg flex items-start gap-3"
+                        role="alert">
+                        <i class="fas fa-times-circle text-lg mt-0.5"></i>
+                        <div>
+                            <strong class="font-bold block">Error!</strong>
+                            <span class="text-sm">{{ session('error') }}</span>
+                        </div>
+                    </div>
+                @endif
+
+                @if(!$registrationOpen)
+                    <!-- UI Ketika Pendaftaran Ditutup -->
+                    <div class="text-center py-12">
+                        <div class="mb-6">
+                            <i class="fas fa-door-closed text-6xl text-red-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Pendaftaran Sudah Ditutup</h3>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Terima kasih atas minat Anda untuk mengikuti AMPERA 2026. 
+                            Sayangnya, pendaftaran telah ditutup karena kuota sudah terpenuhi.
+                        </p>
+                        <p class="text-gray-500 text-sm">
+                            Silakan ikuti media sosial kami untuk informasi acara selanjutnya.
+                        </p>
+                        <div class="mt-8">
+                            <a href="{{ url('/ampera') }}" 
+                               class="inline-block px-8 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition">
+                                Kembali ke Beranda
+                            </a>
+                        </div>
+                    </div>
+                @else
+                    <!-- Form Pendaftaran (Hanya tampil jika pendaftaran dibuka) -->
+                    <form action="{{ route('registration.store') }}" method="POST" enctype="multipart/form-data"
+                        class="space-y-6" id="registrationForm">
+                        @csrf <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" required
                             class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition bg-white">
@@ -175,6 +209,7 @@
                         </button>
                     </div>
                 </form>
+                @endif
             </div>
 
             <p class="mt-8 text-center text-xs text-gray-500">
@@ -182,6 +217,7 @@
             </p>
     </section>
 
+    @if($registrationOpen)
     <script>
         const paymentData = {
             gopay: { label: 'Gopay', number: '088212456560', name: 'Shofiya Nurul Husna' },
@@ -246,6 +282,7 @@
             });
         }
     </script>
+    @endif
 
 </body>
 
