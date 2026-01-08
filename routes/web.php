@@ -23,6 +23,7 @@ use App\Http\Controllers\FungsioController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
+Route::get('/sosmed', [HomeController::class, 'sosmed'])->name('sosmed');
 Route::get('/sisemar', [HomeController::class, 'sisemar'])->name('sisemar');
 Route::get('/ampera', [HomeController::class, 'ampera'])->name('ampera');
 

@@ -69,4 +69,12 @@ class HomeController extends Controller
 
         return view('guest.sisemar', compact('sisemarData', 'socials'));
     }
+
+    public function sosmed()
+    {
+        // Ambil semua data social media dari database
+        $socials = SocialMedia::all();
+
+        return view('guest.sosmed', compact('socials'));
+    }
 }

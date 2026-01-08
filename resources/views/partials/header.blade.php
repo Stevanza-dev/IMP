@@ -27,6 +27,11 @@
                         Activity
                     </a>
 
+                    <a href="{{ url('/sosmed') }}" 
+                       class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('sosmed') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
+                        Social Media
+                    </a>
+
                     <a href="{{ url('/sisemar') }}" 
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('sisemar') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         SI SEMAR
@@ -65,6 +70,11 @@
             <a href="{{ url('/activity') }}" 
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('activity') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 Activity
+            </a>
+
+            <a href="{{ url('/sosmed') }}" 
+               class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('sosmed') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                Social Media
             </a>
 
             <a href="{{ url('/sisemar') }}" 
