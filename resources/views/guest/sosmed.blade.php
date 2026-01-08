@@ -31,7 +31,7 @@
 
 	@php
 		// Ubah link di bawah ini ke link Google Form / Google Docs untuk Media Partner
-		$medpartLink = 'https://forms.gle/contoh-link-medpart';
+		$medpartLink = 'https://drive.google.com/drive/folders/1mXCKXQwxFFJ27xGEy9E2HRQ20CgJBJpn?usp=drive_link';
 	@endphp
 
 	<!-- Hero Section -->
@@ -62,10 +62,10 @@
 					<a href="{{ $medpartLink }}" target="_blank" rel="noopener noreferrer"
 					   class="inline-flex items-center px-5 py-3 bg-white text-blue-800 font-semibold rounded-full shadow-md hover:bg-blue-50 transition">
 						<i class="fas fa-handshake mr-2"></i>
-						Form Pengajuan Media Partner
+						Syarat & Ketentuan Media Partner
 					</a>
 					<p class="text-xs text-blue-100 max-w-xs md:text-right">
-						Link mengarah ke Google Form/Google Docs. Jika belum tersedia, silakan ganti URL di bagian atas file ini.
+						Link mengarah ke Google Drive eksternal. Pastikan untuk membaca terlebih dahulu.
 					</p>
 				</div>
 			</div>

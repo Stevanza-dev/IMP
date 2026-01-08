@@ -10,22 +10,26 @@
     <link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+    </style>
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </div>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <div class="min-h-screen flex flex-col justify-center items-center px-4">
+        <a href="/" class="mb-6 flex items-center gap-3 text-gray-700 hover:text-gray-900">
+            <img src="{{ asset('images/logonocap.png') }}" alt="IMP Logo" class="w-10 h-10">
+            <span class="font-semibold tracking-tight hidden sm:inline">IMP UNNES 2026</span>
+        </a>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="w-full max-w-md bg-white border border-gray-100 shadow-sm rounded-2xl px-6 py-6 sm:px-8 sm:py-8">
             {{ $slot }}
         </div>
     </div>

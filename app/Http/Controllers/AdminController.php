@@ -204,7 +204,7 @@ class AdminController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Data peserta berhasil diperbaiki.');
+        return redirect()->route('admin.ampera.dashboard')->with('success', 'Data peserta berhasil diperbaiki.');
     }
 
     /**

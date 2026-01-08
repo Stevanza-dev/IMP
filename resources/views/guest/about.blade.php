@@ -16,6 +16,12 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+
+		.hero-bg-sosmed {
+			background-image: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.85)), url('{{ asset("images/makrab.jpg") }}');
+			background-size: cover;
+			background-position: center;
+		}
     </style>
 </head>
 
@@ -23,21 +29,15 @@
 
     @include('partials.header')
 
-    <section class="bg-blue-900 text-white pt-32 pb-16 px-4 relative overflow-hidden">
-        <div
-            class="absolute top-0 right-0 w-64 h-64 bg-blue-800 rounded-full translate-x-1/2 -translate-y-1/2 opacity-50">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-40 h-40 bg-blue-500 rounded-full -translate-x-1/2 translate-y-1/2 opacity-20">
-        </div>
-
-        <div class="max-w-7xl mx-auto relative z-10 text-center">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Struktur Organisasi</h1>
-            <p class="text-blue-200 text-lg max-w-2xl mx-auto">
-                Mengenal lebih dalam departemen dan divisi yang menjadi motor penggerak Ikatan Mahasiswa Pati UNNES.
-            </p>
-        </div>
-    </section>
+    <section class="hero-bg-sosmed h-80 md:h-96 flex items-center justify-center text-center px-4 relative mt-16 md:mt-0">
+		<div class="max-w-3xl mx-auto text-white z-10">
+			<p class="text-blue-200 font-semibold tracking-wider uppercase mb-2">Mengenal Struktur IMP UNNES</p>
+			<h1 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">Struktur Organisasi</h1>
+			<p class="text-base md:text-lg text-blue-100 max-w-2xl mx-auto">
+				Mengenal lebih dalam departemen dan divisi yang menjadi motor penggerak Ikatan Mahasiswa Pati UNNES.
+			</p>
+		</div>
+	</section>
 
     <section class="py-16 px-4 flex-grow">
         <div class="max-w-7xl mx-auto">

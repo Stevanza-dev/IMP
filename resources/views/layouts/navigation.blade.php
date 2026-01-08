@@ -19,10 +19,12 @@
                     @endcan
 
                     @can('manage ampera')
+                        <x-nav-link :href="route('admin.ampera.dashboard')" :active="request()->routeIs('admin.ampera.dashboard')">
+                            {{ __('Pendaftar') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
                             {{ __('Absensi') }}
                         </x-nav-link>
-
                         <x-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
                             {{ __('Scan QR') }}
                         </x-nav-link>
@@ -146,10 +148,12 @@
             @endcan
 
             @can('manage ampera')
+                <x-responsive-nav-link :href="route('admin.ampera.dashboard')" :active="request()->routeIs('admin.ampera.dashboard')">
+                    {{ __('Pendaftar') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
                     {{ __('Absensi') }}
                 </x-responsive-nav-link>
-
                 <x-responsive-nav-link :href="route('admin.scan')" :active="request()->routeIs('admin.scan')">
                     {{ __('Scan QR') }}
                 </x-responsive-nav-link>

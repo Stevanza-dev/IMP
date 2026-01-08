@@ -16,6 +16,12 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+
+		.hero-bg-sosmed {
+			background-image: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.85)), url('{{ asset("images/makrab.jpg") }}');
+			background-size: cover;
+			background-position: center;
+		}
     </style>
 </head>
 
@@ -23,23 +29,15 @@
 
     @include('partials.header')
 
-    <section class="bg-slate-900 text-white pt-32 pb-16 px-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
-            <svg class="absolute top-0 left-0 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2"
-                viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#3B82F6"
-                    d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.3C93.5,8.6,82.2,21.5,70.6,32.2C59,42.9,47.1,51.4,34.8,58.3C22.5,65.2,9.8,70.5,-2.2,74.3C-14.2,78.1,-25.4,80.4,-36.3,75.9C-47.2,71.4,-57.8,60.1,-66.5,47.6C-75.2,35.1,-82,21.3,-83.4,6.9C-84.8,-7.5,-80.8,-22.5,-72.6,-34.9C-64.4,-47.3,-52,-57.1,-39.3,-64.9C-26.6,-72.7,-13.3,-78.5,0.7,-79.7C14.7,-80.9,29.4,-77.5,44.7,-76.4Z"
-                    transform="translate(100 100)" />
-            </svg>
-        </div>
-
-        <div class="max-w-7xl mx-auto relative z-10 text-center">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Timeline Kegiatan</h1>
-            <p class="text-blue-200 text-lg max-w-2xl mx-auto">
-                Rekam jejak perjalanan kami dalam berkarya. Dari perencanaan hingga pelaksanaan program kerja.
-            </p>
-        </div>
-    </section>
+    <section class="hero-bg-sosmed h-80 md:h-96 flex items-center justify-center text-center px-4 relative mt-16 md:mt-0">
+		<div class="max-w-3xl mx-auto text-white z-10">
+			<p class="text-blue-200 font-semibold tracking-wider uppercase mb-2">Rekam Jejak Kegiatan IMP UNNES</p>
+			<h1 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">Timeline Kegiatan</h1>
+			<p class="text-base md:text-lg text-blue-100 max-w-2xl mx-auto">
+				Rekam jejak perjalanan kami dalam berkarya. Dari perencanaan hingga pelaksanaan program kerja.
+			</p>
+		</div>
+	</section>
 
     <section class="py-16 px-4 flex-grow">
         <div class="max-w-4xl mx-auto">
