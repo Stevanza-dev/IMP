@@ -13,6 +13,7 @@ class Fungsio extends Model
         'nickname',
         'nim',
         'jabatan',
+        'year',
         'foto_public',
         'foto_url',
         'no_hp',

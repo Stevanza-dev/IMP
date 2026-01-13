@@ -37,6 +37,12 @@
                     @endcan
 
                     @can('manage imp')
+                        <x-nav-link :href="route('admin.imp.stat')" :active="request()->routeIs('admin.imp.stat')">
+                            {{ __('Statistik IMP') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.imp.list')" :active="request()->routeIs('admin.imp.list')">
+                            {{ __('Daftar Fungsionaris') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
                             {{ __('Divisi') }}
                         </x-nav-link>
@@ -166,6 +172,12 @@
             @endcan
 
             @can('manage imp')
+                <x-responsive-nav-link :href="route('admin.imp.stat')" :active="request()->routeIs('admin.imp.stat')">
+                    {{ __('Statistik IMP') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.imp.list')" :active="request()->routeIs('admin.imp.list')">
+                    {{ __('Daftar Fungsionaris') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('divisions.index')" :active="request()->routeIs('divisions.*')">
                     {{ __('Divisi') }}
                 </x-responsive-nav-link>

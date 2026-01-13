@@ -80,14 +80,28 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label for="jabatan" class="block text-sm font-medium text-gray-700">Jabatan<span class="text-red-500">*</span></label>
-                            <input id="jabatan" name="jabatan" type="text" required
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                value="{{ old('jabatan', $fungsio->jabatan) }}">
-                            @error('jabatan')
-                                <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                            @enderror
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="jabatan" class="block text-sm font-medium text-gray-700">Jabatan<span class="text-red-500">*</span></label>
+                                <input id="jabatan" name="jabatan" type="text" required
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    value="{{ old('jabatan', $fungsio->jabatan) }}">
+                                @error('jabatan')
+                                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="year" class="block text-sm font-medium text-gray-700">Angkatan<span class="text-red-500">*</span></label>
+                                <select id="year" name="year" required
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">-- Pilih Angkatan --</option>
+                                    <option value="2023" @selected(old('year', $fungsio->year) == '2023')>2023</option>
+                                    <option value="2024" @selected(old('year', $fungsio->year) == '2024')>2024</option>
+                                </select>
+                                @error('year')
+                                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

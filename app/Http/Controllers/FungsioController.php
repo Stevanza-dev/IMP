@@ -7,6 +7,7 @@ use App\Models\Fungsio;
 use App\Models\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class FungsioController extends Controller
@@ -34,6 +35,35 @@ class FungsioController extends Controller
         return view('fungsio.list', compact('divisions'));
     }
 
+    public function stat(){
+        $totalFungsio = Fungsio::count();
+
+        $angkatan2023 = Fungsio::where('year', '2023')->count();
+        $angkatan2024 = Fungsio::where('year', '2024')->count();
+
+        $totalAktif = Fungsio::where('status', 'aktif')->count();
+        $totalAlumni = Fungsio::where('status', 'alumni')->count();
+
+        $perAngkatan = Fungsio::select('year', DB::raw('COUNT(*) as total'))
+            ->groupBy('year')
+            ->orderBy('year', 'asc')
+            ->get();
+
+        $perDivisi = Division::withCount('fungsios')
+            ->orderBy('name')
+            ->get();
+
+        return view('fungsio.stat', compact(
+            'totalFungsio',
+            'angkatan2023',
+            'angkatan2024',
+            'totalAktif',
+            'totalAlumni',
+            'perAngkatan',
+            'perDivisi'
+        ));
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -44,6 +74,7 @@ class FungsioController extends Controller
             'nickname' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:30'],
             'jabatan' => ['required', 'string', 'max:255'],
+            'year' => ['required', 'string', 'max:4'],
             'no_hp' => ['required', 'string', 'max:20'],
             'alamat' => ['required', 'string'],
             'status' => ['required', 'in:alumni,aktif'],

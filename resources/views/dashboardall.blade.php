@@ -40,7 +40,7 @@
                                 Kelola data anggota, divisi, program kerja, dan inventaris organisasi IMP secara terpusat.
                             </p>
                             <div class="mt-6">
-                                <a href="{{ route('divisions.index') }}"
+                                <a href="{{ route('admin.imp.stat') }}"
                                     class="inline-block bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition">
                                     Masuk Dashboard IMP &rarr;
                                 </a>

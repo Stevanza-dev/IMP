@@ -57,6 +57,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 1. GROUP IMP (Members, Divisions, Meetings, Socials, Proker)
     // -----------------------------------------------------------
     Route::middleware(['permission:manage imp'])->group(function () {
+        Route::get('/admin/imp/stat', [FungsioController::class, 'stat'])->name('admin.imp.stat');
+        Route::get('/admin/imp/list', [FungsioController::class, 'index'])->name('admin.imp.list');
         // Resources
         Route::resource('/admin/divisions', DivisionController::class);
         Route::resource('/admin/socials', SocialMediaController::class);
