@@ -135,4 +135,10 @@ class RegistrationController extends Controller
     {
         return view('registrations.success');
     }
+
+    public function twibbon()
+    {
+        
+        return view('registrations.twibbon');
+    }
 }

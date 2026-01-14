@@ -53,17 +53,21 @@
 
             <div class="flex flex-col md:flex-row justify-center gap-4">
                 <a href="{{ route('registration.create') }}"
-                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-emerald-900/50 border border-emerald-400">
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-green-900/50 border border-green-400">
                     Daftar Sekarang
                 </a>
 
                 <a href="https://instagram.com/ampera_imp" target="_blank"
-                    class="bg-white text-emerald-900 font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition flex items-center justify-center gap-2">
+                    class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-pink-900/50 flex items-center justify-center gap-2">
                     <i class="fab fa-instagram text-xl"></i> Instagram Official
                 </a>
                 <a href="{{ route('ampera.ticket.check') }}"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-blue-900/50 border border-blue-400">
+                    class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-purple-900/50 border border-purple-400">
                     Cek Tiket
+                </a>
+                <a href="{{ route('registration.twibbon') }}"
+                    class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-orange-900/50 border border-orange-400">
+                    Twibbon AMPERA
                 </a>
             </div>
         </div>
@@ -230,7 +234,7 @@
 
             <div class="mt-12">
                 <a href="{{ route('registration.create') }}"
-                    class="inline-block bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-full transition shadow-lg">
+                    class="inline-block bg-white hover:bg-gray-100 text-emerald-900 font-bold py-3 px-8 rounded-full transition shadow-lg shadow-white/50 border-2 border-white">
                     Jadilah Relawan Sekarang
                 </a>
             </div>

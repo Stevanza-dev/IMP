@@ -35,6 +35,7 @@ Route::get('/sisemar/cek-tiket', [TicketController::class, 'sisemar'])->name('si
 Route::get('/daftar-ampera', [RegistrationController::class, 'create'])->name('registration.create');
 Route::post('/daftar-ampera', [RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/daftar-ampera/sukses', [RegistrationController::class, 'success'])->name('registration.success');
+Route::get('/ampera/twibbon', [RegistrationController::class, 'twibbon'])->name('registration.twibbon');
 
 // Route Absensi Peserta Rapat (Via QR Code Public Access for input)
 Route::get('/absen-rapat/{token}', [AttendanceController::class, 'show'])->name('attendance.form');
