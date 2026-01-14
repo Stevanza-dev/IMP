@@ -219,12 +219,13 @@
                         <div class="space-y-3 md:space-y-4 mb-4 md:mb-6 max-h-[400px] md:max-h-[600px] overflow-y-auto">
                             <div class="bg-emerald-50 border-l-4 border-emerald-600 p-3 md:p-4 rounded">
                                 <p class="text-gray-800 text-xs leading-relaxed mb-3 whitespace-pre-wrap font-mono" id="caption-1">[🌱 OFFICIAL TWIBBON AMPERA 2026 🌱]
-I'm ready for AMPERA NGREMBAKA BUMI 2026
+
+I'm ready for AMPERA NGREMBAKA BUMI IMP 2026🌱
 
 "The best time to plant a tree was 20 years ago. The second best time is now." - Chinese Proverb
 
 Hello Pejuang Bumi!
-Saya (Nama) dari (Asal Instansi/Komunitas) siap berpartisipasi dalam kegiatan "AMPERA NGREMBAKA BUMI 2026" — aksi nyata kepedulian lingkungan melalui penanaman pohon demi bumi yang lebih lestari.
+Saya (Nama) dari (Asal Instansi/Komunitas) siap berpartisipasi dalam kegiatan “AMPERA NGREMBAKA BUMI 2026” — aksi nyata kepedulian lingkungan melalui penanaman pohon demi bumi yang lebih lestari.
 
 Hijaukan Negeri, Bergerak Mengabdi, Bumi Lestari! 🌱
 
