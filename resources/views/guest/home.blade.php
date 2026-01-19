@@ -13,6 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
+    <!-- PWA  -->
+    <meta name="theme-color" content="#2563eb"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -192,8 +197,24 @@
     </section>
 
     @include('partials.footer')
-
+    
+    <script src="{{ asset('/sw.js') }}"></script>
     <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+            (registration) => {
+                console.log("Service worker registration succeeded:", registration);
+            },
+            (error) => {
+                console.error(`Service worker registration failed: ${error}`);
+            },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+
         window.addEventListener('scroll', function () {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
