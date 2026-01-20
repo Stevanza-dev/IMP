@@ -83,9 +83,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label for="jabatan" class="block text-sm font-medium text-gray-700">Jabatan<span class="text-red-500">*</span></label>
-                                <input id="jabatan" name="jabatan" type="text" required
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    value="{{ old('jabatan', $fungsio->jabatan) }}">
+                                <select id="jabatan" name="jabatan" required
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    <option value="Ketua Umum" @selected(old('jabatan', $fungsio->jabatan) == 'Ketua Umum')>Ketua Umum</option>
+                                    <option value="Wakil Ketua Umum" @selected(old('jabatan', $fungsio->jabatan) == 'Wakil Ketua Umum')>Wakil Ketua Umum</option>
+                                    <option value="Kepala Divisi" @selected(old('jabatan', $fungsio->jabatan) == 'Kepala Divisi')>Kepala Divisi</option>
+                                    <option value="Staf Ahli Divisi" @selected(old('jabatan', $fungsio->jabatan) == 'Staf Ahli Divisi')>Staf Ahli Divisi</option>
+                                    <option value="Staf Divisi" @selected(old('jabatan', $fungsio->jabatan) == 'Staf Divisi')>Staf Divisi</option>
+                                    <option value="Bendahara Divisi" @selected(old('jabatan', $fungsio->jabatan) == 'Bendahara Divisi')>Bendahara Divisi</option>
+                                    <option value="Sekretaris Divisi" @selected(old('jabatan', $fungsio->jabatan) == 'Sekretaris Divisi')>Sekretaris Divisi</option>
+                                </select>
                                 @error('jabatan')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                                 @enderror
