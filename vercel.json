@@ -12,6 +12,10 @@
             "dest": "/public/$1/$2"
         },
         {
+            "src": "/(manifest.json|sw.js|logo.png|favicon.ico|robots.txt|offline.html|pwa-install.js)",
+            "dest": "/public/$1"
+        },
+        {
             "src": "/webhook/(.*)",
             "dest":"/api/index.php"
         },
