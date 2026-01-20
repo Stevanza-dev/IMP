@@ -1,6 +1,6 @@
 <x-guest-layout>
     <h1 class="text-xl font-semibold text-gray-900 mb-1">Daftar</h1>
-    <p class="text-sm text-gray-500 mb-6">Buat akun baru untuk mengelola data di IMP UNNES.</p>
+    <p class="text-sm text-gray-500 mb-6">Buat akun baru untuk masuk di IMP UNNES.</p>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf

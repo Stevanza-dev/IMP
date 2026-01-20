@@ -26,7 +26,7 @@
     <div class="min-h-screen flex flex-col justify-center items-center px-4">
         <a href="/" class="mb-6 flex items-center gap-3 text-gray-700 hover:text-gray-900">
             <img src="{{ asset('images/logonocap.png') }}" alt="IMP Logo" class="w-10 h-10">
-            <span class="font-semibold tracking-tight hidden sm:inline">IMP UNNES 2026</span>
+            <span class="font-semibold tracking-tight sm:inline">IMP UNNES 2026</span>
         </a>
 
         <div class="w-full max-w-md bg-white border border-gray-100 shadow-sm rounded-2xl px-6 py-6 sm:px-8 sm:py-8">
