@@ -64,6 +64,9 @@
                         <x-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
                             {{ __('Periode') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.comites.index')" :active="request()->routeIs('admin.comites.*')">
+                            {{ __('Kepanitiaan') }}
+                        </x-nav-link>
                     @endrole
 
                     @role('fungsio')
@@ -72,6 +75,9 @@
                         </x-nav-link>
                         <x-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
                             {{ __('Daftar Fungsionaris') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('fungsio.comite.index')" :active="request()->routeIs('fungsio.comite.*')">
+                            {{ __('Kepanitiaan') }}
                         </x-nav-link>
                     @endrole
 
@@ -199,6 +205,9 @@
                 <x-responsive-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
                     {{ __('Periode') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.comites.index')" :active="request()->routeIs('admin.comites.*')">
+                    {{ __('Kepanitiaan') }}
+                </x-responsive-nav-link>
             @endrole
 
             @role('fungsio')
@@ -207,6 +216,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
                     {{ __('Daftar Fungsionaris') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('fungsio.comite.index')" :active="request()->routeIs('fungsio.comite.*')">
+                    {{ __('Kepanitiaan') }}
                 </x-responsive-nav-link>
             @endrole
 

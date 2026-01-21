@@ -38,6 +38,6 @@ class Fungsio extends Model
 
     public function comites()
     {
-        return $this->hasMany(Comite::class);
+        return $this->hasMany(Comite::class, 'created_by_fungsio_id');
     }
 }

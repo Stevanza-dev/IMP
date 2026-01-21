@@ -112,9 +112,9 @@
             <h3 class="text-xl font-bold text-blue-900 mb-2">Ingin berkolaborasi dengan salah satu divisi kami?</h3>
             <p class="text-gray-600 mb-6">Kami sangat terbuka untuk kerjasama media partner, sponsorship, maupun
                 kolaborasi event.</p>
-            <a href="https://wa.me/6281234567890"
+            <a href="https://wa.me/62895421689966"
                 class="inline-flex items-center justify-center px-6 py-3 text-base font-bold text-white transition-all duration-200 bg-green-500 border border-transparent rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 shadow-md">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi Humas
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi Ketua Umum
             </a>
         </div>
     </section>

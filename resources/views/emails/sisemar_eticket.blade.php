@@ -36,7 +36,7 @@
         </ul>
 
         <p>Silakan klik tombol di bawah ini untuk melihat detail tiket dan <strong>QR Code</strong> Anda. QR Code ini
-            wajib ditunjukkan kepada panitia saat <strong>Penukaran Tiket</strong>.</p>
+            wajib ditunjukkan kepada panitia saat <strong>Hari-H Acara</strong>.</p>
 
         <div style="text-align: center; margin: 35px 0;">
             <a href="{{ route('sisemar.ticket.check', ['search' => $sisemar->e_ticket_code]) }}"

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\SisemarAdminController;
 use App\Http\Controllers\SisemarAttendanceController;
 use App\Http\Controllers\FungsioController;
+use App\Http\Controllers\ComiteController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -134,6 +135,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/profil', [FungsioController::class, 'update'])->name('profile.update');
 
         Route::get('/list', [FungsioController::class, 'index'])->name('list');
+
+        // Buat & kelola kepanitiaan (resource utama)
+        Route::resource('/comite', ComiteController::class)->names([
+            'index' => 'comite.index',
+            'create' => 'comite.create',
+            'store' => 'comite.store',
+            'show' => 'comite.show',
+            'edit' => 'comite.edit',
+            'update' => 'comite.update',
+            'destroy' => 'comite.destroy',
+        ]);
+        // Kepanitiaan yang diikuti fungsio (detail terpisah, URL berbeda agar tidak menimpa route show di atas)
+        Route::get('/mycomite/{comite}', [ComiteController::class, 'myComiteShow'])->name('comite.my.show');
+        // Verifikasi kepanitiaan oleh ketua panitia
+        Route::post('/comite/{comite}/verify', [ComiteController::class, 'verify'])->name('comite.verify');
+        // Manajemen anggota kepanitiaan oleh fungsio pembuat
+        Route::post('/comite/{comite}/members', [ComiteController::class, 'storeMember'])->name('comite.members.store');
+        Route::delete('/comite/{comite}/members/{member}', [ComiteController::class, 'destroyMember'])->name('comite.members.destroy');
     });
 
 });
