@@ -68,8 +68,14 @@
         </div>
     </div>
 
+    {{-- Loading Indicator --}}
+    <div wire:loading.flex class="items-center justify-center gap-2 mb-4 text-blue-600">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span>Memuat data...</span>
+    </div>
+
     {{-- Mobile: stacked cards --}}
-    <div class="md:hidden space-y-4">
+    <div class="md:hidden space-y-4" wire:loading.remove>
         @foreach ($sisemars as $sisemar)
             <div class="bg-white p-4 rounded-lg shadow-sm border">
                 <div class="flex justify-between items-start">
@@ -152,7 +158,7 @@
     </div>
 
     {{-- Desktop: table view (md+) --}}
-    <div class="hidden md:block overflow-x-auto">
+    <div class="hidden md:block overflow-x-auto" wire:loading.remove>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -243,7 +249,7 @@
         </table>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4" wire:loading.remove>
         {{ $sisemars->links() }}
     </div>
 
