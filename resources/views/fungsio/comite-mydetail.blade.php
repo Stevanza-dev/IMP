@@ -40,10 +40,10 @@
                         <div>
                             <h4 class="text-sm font-semibold text-gray-700">Verifikasi</h4>
                             <p class="mt-1 text-sm text-gray-600">
-                                Dibuat oleh: {{ $comite->createdBy->nickname ?? $comite->createdBy->user->name ?? '-' }}<br>
+                                Dibuat oleh: {{ $comite->createdBy->user->name ?? '-' }}<br>
                                 @if ($comite->verified_at)
                                     @if ($comite->verifiedBy)
-                                        Diverifikasi oleh: {{ $comite->verifiedBy->nickname ?? $comite->verifiedBy->user->name ?? '-' }}<br>
+                                        Diverifikasi oleh: {{ $comite->verifiedBy->user->name ?? '-' }}<br>
                                     @else
                                         Diverifikasi oleh: Ketua Panitia<br>
                                     @endif
@@ -82,7 +82,7 @@
                                                     @else
                                                         <span class="text-gray-500">Anggota:</span>
                                                     @endif
-                                                    {{ $member->fungsio->nickname ?? $member->fungsio->user->name ?? '-' }}
+                                                    {{ $member->fungsio->user->name ?? '-' }}
                                                 </div>
                                             </li>
                                         @empty

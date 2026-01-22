@@ -20,14 +20,16 @@
 						<div class="p-6">
 							<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 								@foreach ($division->fungsios as $fungsio)
-									<div class="p-3 rounded-lg border border-gray-100 bg-white hover:bg-blue-50 hover:border-blue-200 transition">
+									<div
+										class="p-3 rounded-lg border border-gray-100 bg-white hover:bg-blue-50 hover:border-blue-200 transition">
 										<div class="flex items-center space-x-3">
-											<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
-												{{ strtoupper(substr($fungsio->nickname ?? ($fungsio->user->name ?? '?'), 0, 1)) }}
+											<div
+												class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+												{{ strtoupper(substr($fungsio->user->name ?? '?', 0, 1)) }}
 											</div>
 											<div class="min-w-0 flex-1">
 												<p class="text-sm font-bold text-gray-900 truncate">
-													{{ $fungsio->nickname ?? $fungsio->user->name ?? '-' }}
+													{{ $fungsio->user->name ?? '-' }}
 												</p>
 												<p class="text-xs text-gray-500 truncate">{{ $fungsio->jabatan }}</p>
 											</div>

@@ -40,10 +40,10 @@
                         <div>
                             <h4 class="text-sm font-semibold text-gray-700">Verifikasi</h4>
                             <p class="mt-1 text-sm text-gray-600">
-                                Dibuat oleh: {{ $comite->createdBy->nickname ?? $comite->createdBy->user->name ?? '-' }}<br>
+                                Dibuat oleh: {{ $comite->createdBy->user->name ?? '-' }}<br>
                                 @if ($comite->verified_at)
                                     @if ($comite->verifiedBy)
-                                        Diverifikasi oleh: {{ $comite->verifiedBy->nickname ?? $comite->verifiedBy->user->name ?? '-' }}<br>
+                                        Diverifikasi oleh: {{ $comite->verifiedBy->user->name ?? '-' }}<br>
                                     @else
                                         Diverifikasi oleh: Ketua Panitia<br>
                                     @endif
@@ -82,7 +82,7 @@
                                                     @else
                                                         <span class="text-gray-500">Anggota:</span>
                                                     @endif
-                                                    {{ $member->fungsio->nickname ?? $member->fungsio->user->name ?? '-' }}
+                                                    {{ $member->fungsio->user->name ?? '-' }}
                                                 </div>
 
                                                 @if (in_array($comite->status, ['draft', 'pending']))
@@ -144,7 +144,7 @@
                                                             >
                                                                 <option value="">-- Pilih Ketua --</option>
                                                                 @foreach ($availableForThisSie as $f)
-                                                                    <option value="{{ $f->id }}">{{ $f->nickname ?? $f->user->name ?? 'Fungsio #' . $f->id }}</option>
+                                                                    <option value="{{ $f->id }}">{{ $f->user->name ?? 'Fungsio #' . $f->id }}</option>
                                                                 @endforeach
                                                             </select>
                                                             <p class="mt-2 text-xs text-gray-500">Peran akan disimpan sebagai Ketua Panitia.</p>
@@ -165,7 +165,7 @@
                                                                 >
                                                                     <option value="">-- Pilih Anggota --</option>
                                                                     @foreach ($availableForThisSie as $f)
-                                                                        <option value="{{ $f->id }}">{{ $f->nickname ?? $f->user->name ?? 'Fungsio #' . $f->id }}</option>
+                                                                        <option value="{{ $f->id }}">{{ $f->user->name ?? 'Fungsio #' . $f->id }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <button
@@ -203,7 +203,7 @@
                                                             >
                                                                 <option value="">-- Pilih Koordinator --</option>
                                                                 @foreach ($availableForThisSie as $f)
-                                                                    <option value="{{ $f->id }}">{{ $f->nickname ?? $f->user->name ?? 'Fungsio #' . $f->id }}</option>
+                                                                    <option value="{{ $f->id }}">{{ $f->user->name ?? 'Fungsio #' . $f->id }}</option>
                                                                 @endforeach
                                                             </select>
                                                             <p class="mt-1 text-xs text-gray-500">Pilih satu orang jika ingin menjadikannya koor.</p>
@@ -223,7 +223,7 @@
                                                                 >
                                                                     <option value="">-- Pilih Anggota --</option>
                                                                     @foreach ($availableForThisSie as $f)
-                                                                        <option value="{{ $f->id }}">{{ $f->nickname ?? $f->user->name ?? 'Fungsio #' . $f->id }}</option>
+                                                                        <option value="{{ $f->id }}">{{ $f->user->name ?? 'Fungsio #' . $f->id }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <button

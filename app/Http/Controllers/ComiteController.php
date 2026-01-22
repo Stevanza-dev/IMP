@@ -76,10 +76,10 @@ class ComiteController extends Controller
 
         // Filter sie yang tidak kosong
         if (!empty($validated['sies'])) {
-            $sies = array_filter($validated['sies'], function($sieName) {
+            $sies = array_filter($validated['sies'], function ($sieName) {
                 return !empty(trim($sieName));
             });
-            
+
             foreach ($sies as $sieName) {
                 ComiteSie::create([
                     'comite_id' => $comite->id,
@@ -105,10 +105,11 @@ class ComiteController extends Controller
             ->findOrFail($id);
 
         // Daftar fungsio aktif (misalnya untuk dipilih sebagai anggota sie)
-        $availableFungsios = Fungsio::where('status', 'aktif')
-            ->orderBy('nickname')
-            ->orderBy('id')
-            ->get();
+        // Daftar fungsio aktif (misalnya untuk dipilih sebagai anggota sie)
+        $availableFungsios = Fungsio::with('user')
+            ->where('status', 'aktif')
+            ->get()
+            ->sortBy('user.name');
 
         return view('fungsio.comite-show', compact('comite', 'fungsio', 'availableFungsios'));
     }
@@ -164,7 +165,7 @@ class ComiteController extends Controller
         // Filter sie yang tidak kosong dari input
         $newSieNames = [];
         if (!empty($validated['sies'])) {
-            $newSieNames = array_filter($validated['sies'], function($sieName) {
+            $newSieNames = array_filter($validated['sies'], function ($sieName) {
                 return !empty(trim($sieName));
             });
             $newSieNames = array_map('trim', $newSieNames);
@@ -237,7 +238,7 @@ class ComiteController extends Controller
             })
             ->exists();
 
-        if (! $isChair) {
+        if (!$isChair) {
             return back()->with('error', 'Hanya ketua panitia yang dapat memverifikasi kepanitiaan ini.');
         }
 
@@ -303,7 +304,7 @@ class ComiteController extends Controller
                 return back()->with('error', 'Ketua Panitia hanya boleh diisi oleh satu orang.');
             }
 
-            if (! $koorId) {
+            if (!$koorId) {
                 return back()->with('error', 'Pilih satu fungsionaris sebagai Ketua Panitia.');
             }
 
@@ -348,7 +349,7 @@ class ComiteController extends Controller
                 }
             }
 
-            if (! $koorId && empty($anggotaIds)) {
+            if (!$koorId && empty($anggotaIds)) {
                 return back()->with('error', 'Belum ada koor atau anggota yang dipilih untuk sie ini.');
             }
 
