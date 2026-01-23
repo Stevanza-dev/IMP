@@ -19,7 +19,8 @@
                     @endcan
 
                     @can('manage ampera')
-                        <x-nav-link :href="route('admin.ampera.dashboard')" :active="request()->routeIs('admin.ampera.dashboard')">
+                        <x-nav-link :href="route('admin.ampera.dashboard')"
+                            :active="request()->routeIs('admin.ampera.dashboard')">
                             {{ __('Pendaftar') }}
                         </x-nav-link>
                         <x-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
@@ -55,30 +56,27 @@
                     @endcan
 
                     @role('super-admin')
-                        <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
-                            {{ __('Role Manage') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                            {{ __('User Manage') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
-                            {{ __('Periode') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.comites.index')" :active="request()->routeIs('admin.comites.*')">
-                            {{ __('Kepanitiaan') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
+                        {{ __('Role Manage') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        {{ __('User Manage') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
+                        {{ __('Periode') }}
+                    </x-nav-link>
                     @endrole
 
                     @role('fungsio')
-                        <x-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
-                            {{ __('Profil') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
-                            {{ __('Daftar Fungsionaris') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('fungsio.comite.index')" :active="request()->routeIs('fungsio.comite.*')">
-                            {{ __('Kepanitiaan') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
+                        {{ __('Profil') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
+                        {{ __('Daftar Fungsionaris') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('fungsio.comite.index')" :active="request()->routeIs('fungsio.comite.*')">
+                        {{ __('Kepanitiaan') }}
+                    </x-nav-link>
                     @endrole
 
                     @can('manage sisemar')
@@ -160,7 +158,8 @@
             @endcan
 
             @can('manage ampera')
-                <x-responsive-nav-link :href="route('admin.ampera.dashboard')" :active="request()->routeIs('admin.ampera.dashboard')">
+                <x-responsive-nav-link :href="route('admin.ampera.dashboard')"
+                    :active="request()->routeIs('admin.ampera.dashboard')">
                     {{ __('Pendaftar') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.attendance')" :active="request()->routeIs('admin.attendance')">
@@ -196,30 +195,29 @@
             @endcan
 
             @role('super-admin')
-                <x-responsive-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
-                    {{ __('Role Manage') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                    {{ __('User Manage') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
-                    {{ __('Periode') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.comites.index')" :active="request()->routeIs('admin.comites.*')">
-                    {{ __('Kepanitiaan') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('role.index')" :active="request()->routeIs('role.*')">
+                {{ __('Role Manage') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                {{ __('User Manage') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('periods.index')" :active="request()->routeIs('periods.*')">
+                {{ __('Periode') }}
+            </x-responsive-nav-link>
             @endrole
 
             @role('fungsio')
-                <x-responsive-nav-link :href="route('fungsio.profile.edit')" :active="request()->routeIs('fungsio.profile.*')">
-                    {{ __('Profil') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
-                    {{ __('Daftar Fungsionaris') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('fungsio.comite.index')" :active="request()->routeIs('fungsio.comite.*')">
-                    {{ __('Kepanitiaan') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('fungsio.profile.edit')"
+                :active="request()->routeIs('fungsio.profile.*')">
+                {{ __('Profil') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('fungsio.list')" :active="request()->routeIs('fungsio.list')">
+                {{ __('Daftar Fungsionaris') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('fungsio.comite.index')"
+                :active="request()->routeIs('fungsio.comite.*')">
+                {{ __('Kepanitiaan') }}
+            </x-responsive-nav-link>
             @endrole
 
             @can('manage sisemar')

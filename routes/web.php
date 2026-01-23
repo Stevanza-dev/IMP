@@ -115,7 +115,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Absensi Hari H (Langsung scan E-Ticket dari email)
         Route::get('/attendance/scan', [SisemarAttendanceController::class, 'scanPage'])->name('admin.sisemar.attendance.scan');
-        Route::post('/attendance/check-in', [SisemarAttendanceController::class, 'checkIn'])->name('admin.sisemar.attendance.checkin');
         Route::get('/attendance/recap', [SisemarAttendanceController::class, 'recap'])->name('admin.sisemar.attendance.recap');
     });
 
