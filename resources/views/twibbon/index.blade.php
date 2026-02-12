@@ -184,7 +184,7 @@
                     class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 tracking-tight mb-2 drop-shadow-sm">
                     Webinar Kewirausahaan 2026</h1>
                 <p class="mt-4 text-lg md:text-xl text-slate-300 font-medium max-w-2xl mx-auto">Small Start, Big Dream:
-                    Dari Ide Sederhana Jadi Peluang Usaha <br><span class="text-blue-400">#WebinarKwuIMP</span></p>
+                    Dari Ide Sederhana Jadi Peluang Usaha</p>
             </div>
 
             <div class="bg-slate-800/80 backdrop-blur-md p-6 md:p-10 rounded-3xl shadow-2xl border border-slate-700/50">
@@ -304,7 +304,26 @@
                                         more</span>
                                 </div>
                                 <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-mono"
-                                    id="caption-1">I'm ready for WEBINAR KEWIRAUSAHAAN IMP 2026</p>
+                                    id="caption-1">✨ OFFICIAL TWIBBON WEBINAR KEWIRAUSAHAAN IMP 2026 ✨
+Ready to build your dream business? 🚀
+
+Mulai dari ide sederhana,
+Berkembang jadi usaha luar biasa🔥
+
+Hello, Future Entrepreneurs! 👋
+Saya [Nama] dari [Asal/Instansi] siap mengikuti acara Webinar Kewirausahaan IMP
+2026! 💼✨
+
+Di sinilah mindset dibentuk, strategi dipelajari, dan mimpi bisnis mulai disusun.
+“Kesempatan tidak datang dua kali, tapi keberanian bisa kamu ciptakan hari ini.”
+
+Yuk, daftar sekarang dan jadilah bagian dari generasi entrepreneur muda yang
+kreatif, inovatif, dan siap bersaing! 🌟
+
+#WebinarKewirausahaanIMP2026
+#KWUIMP
+#IMPUNNES
+#SmallStartBigDream</p>
                             </div>
 
                             <button
@@ -529,14 +548,14 @@
                 await new Promise((resolve, reject) => {
                     frameImg.onload = resolve;
                     frameImg.onerror = reject;
-                    frameImg.src = '{{ asset("images/twibbon.png") }}';
+                    frameImg.src = '{{ asset("images/webinarkwu.png") }}';
                 });
 
                 ctx.drawImage(frameImg, 0, 0, targetSize, targetSize);
 
                 const link = document.createElement('a');
                 link.href = tempCanvas.toDataURL('image/png', 1.0);
-                link.download = `AMPERA2026-Twibbon-${new Date().getTime()}.png`;
+                link.download = `WEBINARKWU-Twibbon-${new Date().getTime()}.png`;
                 link.click();
 
             } catch (error) {
