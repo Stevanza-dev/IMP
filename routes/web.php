@@ -19,6 +19,7 @@ use App\Http\Controllers\SisemarAdminController;
 use App\Http\Controllers\SisemarAttendanceController;
 use App\Http\Controllers\FungsioController;
 use App\Http\Controllers\ComiteController;
+use App\Http\Controllers\TwibbonController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -37,6 +38,9 @@ Route::get('/daftar-ampera', [RegistrationController::class, 'create'])->name('r
 Route::post('/daftar-ampera', [RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/daftar-ampera/sukses', [RegistrationController::class, 'success'])->name('registration.success');
 Route::get('/ampera/twibbon', [RegistrationController::class, 'twibbon'])->name('registration.twibbon');
+
+// Twibbon Webinar
+Route::get('/webinarkwu/twibbon', [TwibbonController::class, 'index'])->name('webinarkwu.twibbon');
 
 // Route Absensi Peserta Rapat (Via QR Code Public Access for input)
 Route::get('/absen-rapat/{token}', [AttendanceController::class, 'show'])->name('attendance.form');
