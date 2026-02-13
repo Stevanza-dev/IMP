@@ -304,21 +304,19 @@
                                         more</span>
                                 </div>
                                 <p class="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-mono"
-                                    id="caption-1">✨ OFFICIAL TWIBBON WEBINAR KEWIRAUSAHAAN IMP 2026 ✨
+                                    id="caption-1">🌟OFFICIAL TWIBBON WEBINAR KEWIRAUSAHAAN IMP 2026 🌟
 Ready to build your dream business? 🚀
 
 Mulai dari ide sederhana,
 Berkembang jadi usaha luar biasa🔥
 
 Hello, Future Entrepreneurs! 👋
-Saya [Nama] dari [Asal/Instansi] siap mengikuti acara Webinar Kewirausahaan IMP
-2026! 💼✨
+Saya [Nama] dari [Asal/Instansi] siap mengikuti acara Webinar Kewirausahaan IMP 2026! 💼✨
 
 Di sinilah mindset dibentuk, strategi dipelajari, dan mimpi bisnis mulai disusun.
 “Kesempatan tidak datang dua kali, tapi keberanian bisa kamu ciptakan hari ini.”
 
-Yuk, daftar sekarang dan jadilah bagian dari generasi entrepreneur muda yang
-kreatif, inovatif, dan siap bersaing! 🌟
+Yuk, daftar sekarang dan jadilah bagian dari generasi entrepreneur muda yang kreatif, inovatif, dan siap bersaing! 📈
 
 #WebinarKewirausahaanIMP2026
 #KWUIMP
