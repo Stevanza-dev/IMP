@@ -42,6 +42,16 @@
                         AMPERA
                     </a>
 
+                    <a href="{{ url('/impcup') }}" 
+                       class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('impcup') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
+                        IMP Cup
+                    </a>
+
+                    <a href="{{ url('/album') }}" 
+                       class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('album') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
+                        Album
+                    </a>
+
                     <a href="{{ url('/login') }}" 
                        class="ml-4 inline-flex items-center px-4 py-2 border border-blue-700 text-sm font-semibold rounded-md text-blue-700 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 transition duration-150 ease-in-out">
                         Login
@@ -95,6 +105,16 @@
             <a href="{{ url('/ampera') }}" 
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('ampera') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 AMPERA
+            </a>
+
+            <a href="{{ url('/impcup') }}" 
+               class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('impcup') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                IMP Cup
+            </a>
+
+            <a href="{{ url('/album') }}" 
+               class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('album') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
+                Album
             </a>
 
             <a href="{{ url('/login') }}" 

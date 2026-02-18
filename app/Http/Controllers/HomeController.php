@@ -77,4 +77,24 @@ class HomeController extends Controller
 
         return view('guest.sosmed', compact('socials'));
     }
+
+    public function impcup()
+    {
+        // $impcupData = WorkProgram::where('name', 'LIKE', '%IMP Cup%')->first();
+
+        // Data sosmed untuk footer
+        $socials = SocialMedia::all();
+
+        return view('guest.impcup', compact('socials'));
+    }
+
+    public function album()
+    {
+        // $albumData = WorkProgram::where('name', 'LIKE', '%Album%')->first();
+
+        // Data sosmed untuk footer
+        $socials = SocialMedia::all();
+
+        return view('guest.album', compact('socials'));
+    }
 }

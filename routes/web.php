@@ -28,6 +28,8 @@ Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
 Route::get('/sosmed', [HomeController::class, 'sosmed'])->name('sosmed');
 Route::get('/sisemar', [HomeController::class, 'sisemar'])->name('sisemar');
 Route::get('/ampera', [HomeController::class, 'ampera'])->name('ampera');
+Route::get('/impcup', [HomeController::class, 'impcup'])->name('impcup');
+Route::get('/album', [HomeController::class, 'album'])->name('album');
 
 // Route Cek Tiket Publik
 Route::get('/ampera/cek-tiket', [TicketController::class, 'index'])->name('ampera.ticket.check');
