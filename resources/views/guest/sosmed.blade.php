@@ -31,7 +31,7 @@
 
 	@php
 		// Ubah link di bawah ini ke link Google Form / Google Docs untuk Media Partner
-		$medpartLink = 'https://drive.google.com/drive/folders/1mXCKXQwxFFJ27xGEy9E2HRQ20CgJBJpn?usp=drive_link';
+		$medpartLink = 'https://drive.google.com/file/d/13KpcAEOlzDVs3Xx0q6OvvbEtcWGzp6DX/view?usp=drive_link';
 	@endphp
 
 	<!-- Hero Section -->
@@ -67,6 +67,52 @@
 					<p class="text-xs text-blue-100 max-w-xs md:text-right">
 						Link mengarah ke Google Drive eksternal. Pastikan untuk membaca terlebih dahulu.
 					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Download Logo Section -->
+		<section>
+			<div class="flex items-center justify-between mb-6">
+				<div>
+					<h2 class="text-2xl md:text-3xl font-bold text-gray-900">Download Logo IMP</h2>
+					<p class="text-gray-500 text-sm md:text-base mt-1">
+						Unduh logo resmi IMP UNNES untuk keperluan publikasi dan media partner.
+					</p>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<!-- Logo Original -->
+				<div class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition">
+					<div class="h-48 w-full flex items-center justify-center mb-6 bg-gray-50 rounded-xl border border-dashed border-gray-200 p-6 relative group overflow-hidden">
+						<div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]"></div>
+						<img src="{{ asset('images/logoimp.png') }}" alt="Logo IMP Original" class="max-h-full max-w-full object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
+					</div>
+					<h3 class="text-lg font-bold text-gray-900 mb-2">Logo Original</h3>
+					<p class="text-sm text-gray-500 mb-6 px-4">
+						Format PNG transparansi tinggi dengan warna asli. Gunakan pada latar belakang terang/putih.
+					</p>
+					<a href="{{ asset('images/logoimp.png') }}" download
+					   class="w-full inline-flex items-center justify-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition shadow-sm hover:shadow-md active:scale-95">
+						<i class="fas fa-download mr-2"></i> Download PNG
+					</a>
+				</div>
+
+				<!-- Logo Putih -->
+				<div class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition">
+					<div class="h-48 w-full flex items-center justify-center mb-6 bg-gradient-to-br from-blue-900 to-slate-900 rounded-xl p-6 relative group overflow-hidden shadow-inner">
+						<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+						<img src="{{ asset('images/logoimp-white.png') }}" alt="Logo IMP Putih" class="max-h-full max-w-full object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105">
+					</div>
+					<h3 class="text-lg font-bold text-gray-900 mb-2">Logo Putih</h3>
+					<p class="text-sm text-gray-500 mb-6 px-4">
+						Format PNG warna putih solid. Wajib digunakan pada latar belakang gelap, foto, atau video.
+					</p>
+					<a href="{{ asset('images/logoimp-white.png') }}" download
+					   class="w-full inline-flex items-center justify-center px-5 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition shadow-sm hover:shadow-md active:scale-95">
+						<i class="fas fa-download mr-2"></i> Download PNG
+					</a>
 				</div>
 			</div>
 		</section>
