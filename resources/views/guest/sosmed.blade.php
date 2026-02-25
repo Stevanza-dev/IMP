@@ -47,28 +47,135 @@
 	</section>
 
 	<main class="max-w-6xl mx-auto px-4 py-10 md:py-16 space-y-10 md:space-y-14">
-		<!-- Kartu Media Partner di Paling Atas -->
+		<!-- Sistematika Media Partner -->
+		@if($medpartSteps->isNotEmpty())
 		<section>
-			<div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-				<div>
-					<h2 class="text-2xl md:text-3xl font-bold mb-2">Kerja Sama Media Partner</h2>
-					<p class="text-blue-100 text-sm md:text-base max-w-2xl">
-						Ingin berkolaborasi dengan IMP UNNES untuk publikasi acara, liputan kegiatan, atau kerja sama konten?
-						Silakan baca syarat & ketentuan serta kirim pengajuan melalui link berikut.
-					</p>
-				</div>
-
-				<div class="flex flex-col items-start md:items-end gap-3">
-					<a href="{{ $medpartLink }}" target="_blank" rel="noopener noreferrer"
-					   class="inline-flex items-center px-5 py-3 bg-white text-blue-800 font-semibold rounded-full shadow-md hover:bg-blue-50 transition">
-						<i class="fas fa-handshake mr-2"></i>
-						Syarat & Ketentuan Media Partner
-					</a>
-					<p class="text-xs text-blue-100 max-w-xs md:text-right">
-						Link mengarah ke Google Drive eksternal. Pastikan untuk membaca terlebih dahulu.
-					</p>
-				</div>
+			<div class="mb-6">
+				<h2 class="text-2xl md:text-3xl font-bold text-gray-900">Sistematika Media Partner</h2>
+				<p class="text-gray-500 text-sm md:text-base mt-1">
+					Langkah-langkah yang harus dilakukan untuk menjalin kerja sama media partner.
+				</p>
 			</div>
+			
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+				@foreach($medpartSteps as $index => $step)
+					<div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all group flex flex-col h-full">
+						<div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+							{{ $step->order_number }}
+						</div>
+						<p class="text-gray-700 text-sm md:text-base leading-relaxed flex-grow">
+							{{ $step->description }}
+						</p>
+					</div>
+				@endforeach
+			</div>
+		</section>
+		@endif
+
+		<!-- Paket Medpart -->
+		@if($medpartPackages->isNotEmpty())
+		<section>
+			<div class="mb-6">
+				<h2 class="text-2xl md:text-3xl font-bold text-gray-900">Pilihan Paket</h2>
+				<p class="text-gray-500 text-sm md:text-base mt-1">
+					Pilih paket media partner sesuai dengan kebutuhan acara Anda.
+				</p>
+			</div>
+
+			<div class="space-y-8">
+			@foreach($medpartPackages as $package)
+				<div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+					<div class="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+						<h3 class="text-xl md:text-2xl font-bold text-white tracking-wide">{{ $package->name }}</h3>
+						@if($package->price > 0)
+							<span class="inline-block bg-white text-blue-800 font-bold px-4 py-1.5 rounded-full text-sm shadow-sm self-start sm:self-auto">
+								Rp {{ number_format($package->price, 0, ',', '.') }}
+							</span>
+						@else
+                            <span class="inline-block bg-white text-blue-800 font-bold px-4 py-1.5 rounded-full text-sm shadow-sm self-start sm:self-auto">
+								Gratis
+							</span>
+                        @endif
+					</div>
+					
+					<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+						<!-- Syarat & Ketentuan -->
+						<div class="p-6 md:p-8">
+							<div class="flex items-center gap-3 mb-4 text-blue-600">
+								<i class="fas fa-list-check text-xl"></i>
+								<h4 class="text-lg font-bold text-gray-900">Syarat & Ketentuan</h4>
+							</div>
+							<ul class="space-y-3">
+								@foreach($package->requirements as $req)
+									<li class="flex items-start gap-3 text-gray-600 text-sm md:text-base">
+										<i class="fas fa-check-circle text-blue-500 mt-1 flex-shrink-0"></i>
+										<span>{{ $req->content }}</span>
+									</li>
+								@endforeach
+							</ul>
+						</div>
+
+						<!-- Feedback -->
+						<div class="p-6 md:p-8 bg-gray-50/50">
+							<div class="flex items-center gap-3 mb-4 text-green-600">
+								<i class="fas fa-bullhorn text-xl"></i>
+								<h4 class="text-lg font-bold text-gray-900">Feedback Layanan</h4>
+							</div>
+							<ul class="space-y-3">
+								@foreach($package->feedbacks as $fb)
+									<li class="flex items-start gap-3 text-gray-600 text-sm md:text-base">
+										<i class="fas fa-star text-green-500 mt-1 flex-shrink-0"></i>
+										<span>{{ $fb->content }}</span>
+									</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+				</div>
+			@endforeach
+			</div>
+		</section>
+		@endif
+
+		<!-- Pembayaran -->
+		@if($medpartPayments->isNotEmpty())
+		<section>
+			<div class="mb-6">
+				<h2 class="text-2xl md:text-3xl font-bold text-gray-900">Metode Pembayaran</h2>
+				<p class="text-gray-500 text-sm md:text-base mt-1">
+					Tujuan transfer untuk paket media partner berbayar.
+				</p>
+			</div>
+			
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+				@foreach($medpartPayments as $payment)
+					<div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex items-center gap-4 hover:shadow-lg transition group">
+						<div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 text-xl flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition">
+							<i class="fas fa-wallet"></i>
+						</div>
+						<div>
+							<h4 class="text-sm text-gray-500 font-medium mb-0.5">{{ $payment->bank_name }}</h4>
+							<p class="text-lg font-bold text-gray-900 tracking-wide">{{ $payment->account_number }}</p>
+							<p class="text-xs text-gray-400 mt-0.5 font-semibold">a.n. {{ $payment->account_name }}</p>
+						</div>
+					</div>
+				@endforeach
+			</div>
+		</section>
+		@endif
+
+		<!-- Hubungi Kominfo Section -->
+		<section class="bg-blue-50 rounded-2xl p-6 md:p-8 shadow-sm border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-6">
+			<div>
+				<h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Tertarik untuk Media Partner?</h2>
+				<p class="text-gray-600 text-sm md:text-base">
+					Hubungi untuk kerja sama media partner lebih lanjut.
+				</p>
+			</div>
+			<a href="https://wa.me/{{ $kominfo->phone }}" target="_blank"
+				class="inline-flex items-center justify-center px-6 py-3 text-base font-bold text-white transition-all duration-200 bg-green-500 border border-transparent rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 shadow-md whitespace-nowrap">
+				<i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi {{ $kominfo->name }}
+			</a>
 		</section>
 
 		<!-- Download Logo Section -->

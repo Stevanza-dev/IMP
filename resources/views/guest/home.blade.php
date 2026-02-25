@@ -48,9 +48,9 @@
                 catat nama kita dalam sejarah.
             </p>
             <div class="flex justify-center gap-4">
-                <a href="#program"
+                <a href="https://wa.me/{{ $ketuaUmum->phone }}" target="_blank"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg">
-                    Lihat Program
+                    Hubungi {{ $ketuaUmum->name }}
                 </a>
                 <a href="#about"
                     class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold py-3 px-8 rounded-full transition">

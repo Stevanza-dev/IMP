@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use App\Models\WorkProgram;
 use App\Models\SocialMedia;
-
+use App\Models\MedpartStep;
+use App\Models\MedpartPackage;
+use App\Models\MedpartPayment;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,7 +20,10 @@ class HomeController extends Controller
         // Ambil 3 Proker unggulan/terbaru untuk ditampilkan di Home
         $programs = WorkProgram::latest()->take(3)->get();
 
-        return view('guest.home', compact('socials', 'programs'));
+        // Data kontak Ketua Umum
+        $ketuaUmum = Contact::find(1);
+
+        return view('guest.home', compact('socials', 'programs', 'ketuaUmum'));
     }
 
     public function about()
@@ -75,7 +81,15 @@ class HomeController extends Controller
         // Ambil semua data social media dari database
         $socials = SocialMedia::all();
 
-        return view('guest.sosmed', compact('socials'));
+        // Data Medpart
+        $medpartSteps = MedpartStep::where('is_active', true)->orderBy('order_number', 'asc')->get();
+        $medpartPackages = MedpartPackage::with(['requirements', 'feedbacks'])->where('is_active', true)->get();
+        $medpartPayments = MedpartPayment::where('is_active', true)->get();
+
+        // Data kontak Kominfo
+        $kominfo = Contact::find(2);
+
+        return view('guest.sosmed', compact('socials', 'medpartSteps', 'medpartPackages', 'medpartPayments', 'kominfo'));
     }
 
     public function impcup()

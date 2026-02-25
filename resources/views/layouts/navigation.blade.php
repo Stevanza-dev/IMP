@@ -53,6 +53,18 @@
                         <x-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
                             {{ __('Sosmed') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('medpart-steps.index')" :active="request()->routeIs('medpart-steps.*')">
+                            {{ __('Medpart - Sistematika') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('medpart-packages.index')" :active="request()->routeIs('medpart-packages.*')">
+                            {{ __('Medpart - Paket') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('medpart-payments.index')" :active="request()->routeIs('medpart-payments.*')">
+                            {{ __('Medpart - Bayar') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.*')">
+                            {{ __('Kontak') }}
+                        </x-nav-link>
                     @endcan
 
                     @role('super-admin')
@@ -191,6 +203,18 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.*')">
                     {{ __('Sosmed') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('medpart-steps.index')" :active="request()->routeIs('medpart-steps.*')">
+                    {{ __('Medpart - Sistematika') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('medpart-packages.index')" :active="request()->routeIs('medpart-packages.*')">
+                    {{ __('Medpart - Paket') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('medpart-payments.index')" :active="request()->routeIs('medpart-payments.*')">
+                    {{ __('Medpart - Bayar') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.*')">
+                    {{ __('Kontak') }}
                 </x-responsive-nav-link>
             @endcan
 

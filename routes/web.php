@@ -15,6 +15,10 @@ use App\Http\Controllers\Admin\WorkProgramController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PeriodController;
+use App\Http\Controllers\Admin\MedpartStepController;
+use App\Http\Controllers\Admin\MedpartPackageController;
+use App\Http\Controllers\Admin\MedpartPaymentController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\SisemarAdminController;
 use App\Http\Controllers\SisemarAttendanceController;
 use App\Http\Controllers\FungsioController;
@@ -71,6 +75,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/admin/divisions', DivisionController::class);
         Route::resource('/admin/socials', SocialMediaController::class);
         Route::resource('/admin/programs', WorkProgramController::class);
+
+        //Medpart
+        Route::resource('/admin/medpart-steps', MedpartStepController::class);
+        Route::resource('/admin/medpart-packages', MedpartPackageController::class);
+        Route::resource('/admin/medpart-payments', MedpartPaymentController::class);
+
+        //Contacts
+        Route::resource('/admin/contacts', ContactController::class);
     });
 
     // -----------------------------------------------------------
