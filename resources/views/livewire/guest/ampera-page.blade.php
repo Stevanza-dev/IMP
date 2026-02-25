@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMPERA 2026 - IMP</title>
-    <link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+<div>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -24,12 +11,8 @@
             background-position: center;
             background-attachment: fixed;
         }
+        ";
     </style>
-</head>
-
-<body class="bg-emerald-50 text-gray-800 font-sans">
-
-    @include('partials.header')
 
     <section class="ampera-hero h-screen flex items-center justify-center text-center px-4 relative mt-16 md:mt-0">
         <div class="max-w-4xl mx-auto text-white z-10 animate-fade-in-up">
@@ -52,7 +35,7 @@
             </h2>
 
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="{{ route('registration.create') }}"
+                <a href="{{ route('registration.create') }}" wire:navigate
                     class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-green-900/50 border border-green-400">
                     Daftar Sekarang
                 </a>
@@ -61,11 +44,11 @@
                     class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-pink-900/50 flex items-center justify-center gap-2">
                     <i class="fab fa-instagram text-xl"></i> Instagram Official
                 </a>
-                <a href="{{ route('ampera.ticket.check') }}"
+                <a href="{{ route('ampera.ticket.check') }}" wire:navigate
                     class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-purple-900/50 border border-purple-400">
                     Cek Tiket
                 </a>
-                <a href="{{ route('registration.twibbon') }}"
+                <a href="{{ route('registration.twibbon') }}" wire:navigate
                     class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg shadow-orange-900/50 border border-orange-400">
                     Twibbon AMPERA
                 </a>
@@ -233,7 +216,7 @@
             </div>
 
             <div class="mt-12">
-                <a href="{{ route('registration.create') }}"
+                <a href="{{ route('registration.create') }}" wire:navigate
                     class="inline-block bg-white hover:bg-gray-100 text-emerald-900 font-bold py-3 px-8 rounded-full transition shadow-lg shadow-white/50 border-2 border-white">
                     Jadilah Relawan Sekarang
                 </a>
@@ -241,42 +224,4 @@
         </div>
     </section>
 
-    @include('partials.footer')
-
-
-    <script>
-        // Ambil tanggal dari Variabel PHP (Database)
-        // Format harus YYYY-MM-DD HH:MM:SS
-        const targetDate = new Date("{{ $amperaData->execution_date }} 08:00:00").getTime();
-
-        const timer = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            // Perhitungan Waktu
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update HTML (Pastikan format 2 digit, misal 05)
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            // Jika waktu habis
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                // Bisa tambahkan alert atau ubah teks
-            }
-        }, 1000);
-    </script>
-
-</body>
-
-</html>
+</div>

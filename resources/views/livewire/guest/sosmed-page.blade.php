@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Social Media IMP UNNES</title>
-	<link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
-
-	<script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-		rel="stylesheet">
-
+<div>
 	<style>
 		body {
 			font-family: 'Plus Jakarta Sans', sans-serif;
@@ -24,10 +10,6 @@
 			background-position: center;
 		}
 	</style>
-</head>
-
-<body class="bg-gray-50 text-gray-800">
-	@include('partials.header')
 
 	@php
 		// Ubah link di bawah ini ke link Google Form / Google Docs untuk Media Partner
@@ -278,8 +260,4 @@
 		</section>
 	</main>
 
-	@include('partials.footer')
-
-</body>
-
-</html>
+</div>

@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SI SEMAR 2026 - IMP</title>
-    <link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
+<div>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -40,12 +25,8 @@
         .border-gold {
             border-color: #D97706;
         }
+        ";
     </style>
-</head>
-
-<body class="bg-white text-gray-800">
-
-    @include('partials.header')
 
     <section class="sisemar-hero min-h-screen flex items-center justify-center text-center px-4 relative pt-20">
 
@@ -89,7 +70,7 @@
                     <i class="fab fa-instagram text-xl"></i> Info Resmi
                 </a>
 
-                <a href="{{ route('sisemar.ticket.check') }}"
+                <a href="{{ route('sisemar.ticket.check') }}" wire:navigate
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg border-b-4 border-blue-800">
                     <i class="fas fa-ticket-alt mr-2"></i> Cek Tiket
                 </a>
@@ -243,7 +224,7 @@
             </div>
 
             <div class="mt-12">
-                <a href="{{ route('sisemar') }}"
+                <a href="{{ route('sisemar') }}" wire:navigate
                     class="inline-block bg-blue-900 text-white font-bold py-4 px-12 rounded-full shadow-xl hover:bg-blue-800 transition">
                     Amankan Kursimu Sekarang
                 </a>
@@ -310,41 +291,4 @@
         </div>
     </section>
 
-    @include('partials.footer')
-
-    <script>
-        // Ambil tanggal dari Variabel PHP (Database)
-        // Format harus YYYY-MM-DD HH:MM:SS
-        const targetDate = new Date("{{ $sisemarData->execution_date }} 08:00:00").getTime();
-
-        const timer = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            // Perhitungan Waktu
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update HTML (Pastikan format 2 digit, misal 05)
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            // Jika waktu habis
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                // Bisa tambahkan alert atau ubah teks
-            }
-        }, 1000);
-    </script>
-
-</body>
-
-</html>
+</div>

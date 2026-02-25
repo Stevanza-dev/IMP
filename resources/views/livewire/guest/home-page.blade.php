@@ -1,50 +1,12 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMP UNNES - Ikatan Mahasiswa Pati</title>
-    <link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- PWA  -->
-    <meta name="theme-color" content="#2563eb"/>
-    <link rel="icon" href="{{ asset('pwa/logo128.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('pwa/logo512.png') }}">
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="IMP UNNES - Ikatan Mahasiswa Pati" />
-    <meta property="og:description" content="Website resmi Ikatan Mahasiswa Pati Universitas Negeri Semarang" />
-    <meta property="og:image" content="https://impunnes.web.id/images/og-imp.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://impunnes.web.id" />
-    <meta property="og:type" content="website" />
-
+<div>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.6)), url('{{ asset("images/bumper.JPG") }}');
+            background-image: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.6)), url('{{ asset('images/bumper.JPG') }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
     </style>
-</head>
-
-<body class="bg-gray-50 text-gray-800">
-
-    @include('partials.header')
 
     <section class="hero-bg h-screen flex items-center justify-center text-center px-4 relative mt-16 md:mt-0">
         <div class="max-w-4xl mx-auto text-white z-10 animate-fade-in-up">
@@ -121,7 +83,7 @@
                     (seduluran), mengembangkan potensi akademik maupun non-akademik, serta memberikan kontribusi nyata
                     bagi masyarakat Pati dan lingkungan kampus.
                 </p>
-                <a href="{{ route('about') }}"
+                <a href="{{ route('about') }}" wire:navigate
                     class="inline-flex items-center text-blue-700 font-bold hover:text-blue-800 transition">
                     Temukan Divisi <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -174,7 +136,7 @@
             </div>
 
             <div class="text-center mt-12">
-                <a href="{{ route('activity') }}"
+                <a href="{{ route('activity') }}" wire:navigate
                     class="inline-block border-2 border-blue-600 text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-600 hover:text-white transition duration-300">
                     Lihat Semua Timeline Kegiatan
                 </a>
@@ -206,34 +168,4 @@
         </div>
     </section>
 
-    @include('partials.footer')
-    
-    <script src="{{ asset('/sw.js') }}"></script>
-    <script>
-        if ("serviceWorker" in navigator) {
-            // Register a service worker hosted at the root of the
-            // site using the default scope.
-            navigator.serviceWorker.register("/sw.js").then(
-            (registration) => {
-                console.log("Service worker registration succeeded:", registration);
-            },
-            (error) => {
-                console.error(`Service worker registration failed: ${error}`);
-            },
-            );
-        } else {
-            console.error("Service workers are not supported.");
-        }
-
-        window.addEventListener('scroll', function () {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
-        });
-    </script>
-</body>
-
-</html>
+</div>

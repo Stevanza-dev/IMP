@@ -7,7 +7,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Admin\SocialMediaController;
 use App\Http\Controllers\Admin\DivisionController;
@@ -25,15 +24,15 @@ use App\Http\Controllers\FungsioController;
 use App\Http\Controllers\ComiteController;
 use App\Http\Controllers\TwibbonController;
 
-// Public Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/activity', [HomeController::class, 'activity'])->name('activity');
-Route::get('/sosmed', [HomeController::class, 'sosmed'])->name('sosmed');
-Route::get('/sisemar', [HomeController::class, 'sisemar'])->name('sisemar');
-Route::get('/ampera', [HomeController::class, 'ampera'])->name('ampera');
-Route::get('/impcup', [HomeController::class, 'impcup'])->name('impcup');
-Route::get('/album', [HomeController::class, 'album'])->name('album');
+// Public Routes - Using Livewire Components
+Route::get('/', App\Livewire\Guest\HomePage::class)->name('home');
+Route::get('/about', App\Livewire\Guest\AboutPage::class)->name('about');
+Route::get('/activity', App\Livewire\Guest\ActivityPage::class)->name('activity');
+Route::get('/sosmed', App\Livewire\Guest\SosmedPage::class)->name('sosmed');
+Route::get('/sisemar', App\Livewire\Guest\SisemarPage::class)->name('sisemar');
+Route::get('/ampera', App\Livewire\Guest\AmperaPage::class)->name('ampera');
+Route::get('/impcup', App\Livewire\Guest\ImpcupPage::class)->name('impcup');
+Route::get('/album', App\Livewire\Guest\AlbumPage::class)->name('album');
 
 // Route Cek Tiket Publik
 Route::get('/ampera/cek-tiket', [TicketController::class, 'index'])->name('ampera.ticket.check');

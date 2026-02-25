@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMP CUP - IMP UNNES</title>
-    <link rel="icon" href="{{ asset('images/logonocap.png') }}" type="image/png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<div>
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -47,12 +35,8 @@
                 linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
             background-size: 24px 24px;
         }
+        ";
     </style>
-</head>
-
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
-
-    @include('partials.header')
 
     <main class="flex-grow flex items-center justify-center relative impcup-hero min-h-screen pt-16">
         <!-- Background Pattern -->
@@ -111,30 +95,4 @@
         </div>
     </main>
 
-    @include('partials.footer')
-
-    <script>
-        // Simple blob animation
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes blob {
-                0% { transform: translate(0px, 0px) scale(1); }
-                33% { transform: translate(30px, -50px) scale(1.1); }
-                66% { transform: translate(-20px, 20px) scale(0.9); }
-                100% { transform: translate(0px, 0px) scale(1); }
-            }
-            .animate-blob {
-                animation: blob 7s infinite;
-            }
-            .animation-delay-2000 {
-                animation-delay: 2s;
-            }
-            .animation-delay-4000 {
-                animation-delay: 4s;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-
-</html>
+</div>

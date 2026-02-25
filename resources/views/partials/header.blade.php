@@ -3,7 +3,7 @@
         <div class="flex justify-between h-16">
             <div class="flex w-full justify-between">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <a href="{{ url('/') }}" wire:navigate class="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src="{{ asset('images/logonocap.png') }}" class="h-10 w-10" alt="IMP Logo">
                         <span class="self-center text-xl font-bold whitespace-nowrap text-blue-900 tracking-tight">
                             IMP UNNES
@@ -12,42 +12,42 @@
                 </div>
 
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="{{ url('/') }}" 
+                    <a href="{{ url('/') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('/') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         Home
                     </a>
                     
-                    <a href="{{ url('/about') }}" 
+                    <a href="{{ url('/about') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('about') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         About
                     </a>
 
-                    <a href="{{ url('/activity') }}" 
+                    <a href="{{ url('/activity') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('activity') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         Activity
                     </a>
 
-                    <a href="{{ url('/sosmed') }}" 
+                    <a href="{{ url('/sosmed') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('sosmed') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         Social Media
                     </a>
 
-                    <a href="{{ url('/sisemar') }}" 
+                    <a href="{{ url('/sisemar') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('sisemar') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         SI SEMAR
                     </a>
 
-                    <a href="{{ url('/ampera') }}" 
+                    <a href="{{ url('/ampera') }}" wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('ampera') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         AMPERA
                     </a>
 
-                    <a href="{{ url('/impcup') }}" 
+                    <a href="{{ url('/impcup') }}" wire:navigate wire:navigate
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('impcup') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         IMP Cup
                     </a>
 
-                    <a href="{{ url('/album') }}" 
+                    <a href="{{ url('/album') }}" wire:navigate 
                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out {{ request()->is('album') ? 'border-blue-700 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}">
                         Album
                     </a>
@@ -77,42 +77,42 @@
 
     <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden bg-white border-t border-gray-100">
         <div class="pt-2 pb-3 space-y-1 px-4">
-            <a href="{{ url('/') }}" 
+            <a href="{{ url('/') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('/') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 Home
             </a>
 
-            <a href="{{ url('/about') }}" 
+            <a href="{{ url('/about') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('about') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 About
             </a>
 
-            <a href="{{ url('/activity') }}" 
+            <a href="{{ url('/activity') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('activity') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 Activity
             </a>
 
-            <a href="{{ url('/sosmed') }}" 
+            <a href="{{ url('/sosmed') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('sosmed') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 Social Media
             </a>
 
-            <a href="{{ url('/sisemar') }}" 
+            <a href="{{ url('/sisemar') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('sisemar') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 SI SEMAR
             </a>
 
-            <a href="{{ url('/ampera') }}" 
+            <a href="{{ url('/ampera') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('ampera') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 AMPERA
             </a>
 
-            <a href="{{ url('/impcup') }}" 
+            <a href="{{ url('/impcup') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('impcup') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 IMP Cup
             </a>
 
-            <a href="{{ url('/album') }}" 
+            <a href="{{ url('/album') }}" wire:navigate
                class="block w-full ps-3 pe-4 py-2 border-l-4 text-start text-base font-medium transition duration-150 ease-in-out {{ request()->is('album') ? 'border-blue-700 text-blue-700 bg-blue-50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
                 Album
             </a>
