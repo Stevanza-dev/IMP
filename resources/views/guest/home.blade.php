@@ -15,8 +15,18 @@
 
     <!-- PWA  -->
     <meta name="theme-color" content="#2563eb"/>
-    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
-    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <link rel="icon" href="{{ asset('pwa/logo128.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('pwa/logo512.png') }}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IMP UNNES - Ikatan Mahasiswa Pati" />
+    <meta property="og:description" content="Website resmi Ikatan Mahasiswa Pati Universitas Negeri Semarang" />
+    <meta property="og:image" content="https://impunnes.web.id/images/og-imp.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://impunnes.web.id" />
+    <meta property="og:type" content="website" />
 
     <style>
         body {
