@@ -8,52 +8,55 @@
     "theme_color": "#2563eb",
     "icons": [
         {
-            "src": "pwa/logo512.png",
+            "src": "images/pwa/logo512.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
         },
         {
-            "src": "pwa/logo384.png",
+            "src": "images/pwa/logo384.png",
             "sizes": "384x384",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
         },
         {
-            "src": "pwa/logo192.png",
+            "src": "images/pwa/logo192.png",
             "sizes": "192x192",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
         },
         {
-            "src": "pwa/logo152.png",
-            "sizes": "152x152",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "pwa/logo144.png",
+            "src": "images/pwa/logo144.png",
             "sizes": "144x144",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
         },
         {
-            "src": "pwa/logo128.png",
-            "sizes": "128x128",
+            "src": "images/pwa/logo512.png",
+            "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "maskable"
         },
         {
-            "src": "pwa/logo96.png",
-            "sizes": "96x96",
+            "src": "images/pwa/logo192.png",
+            "sizes": "192x192",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "images/desktop-home.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "IMP UNNES Desktop View"
         },
         {
-            "src": "pwa/logo72.png",
-            "sizes": "72x72",
+            "src": "images/mobile-home.png",
+            "sizes": "720x1280",
             "type": "image/png",
-            "purpose": "any maskable"
+            "label": "IMP UNNES Mobile View"
         }
     ]
 }
